@@ -1,0 +1,10 @@
+idea,experimento,precaución
+Conversión sin cuándo,"Evento observado hasta noviembre, una fila por cliente; controles de cohorte y horizonte",Diagnóstico retrospectivo; no etiqueta de nunca-conversión
+Ingreso/edad,Tres ratios o transformaciones determinísticas,"Proxies cuantitativos, no éxito personal"
+Ingreso/dispositivo,"Seis cruces con bandas de ingreso, préstamo y deuda","No se interpreta como gasto, estatus o ahorro"
+Foto de entrada,"Añadir relojes mensual y anual de antigüedad, edad y recencia inicial",Recencia solo crece bajo el supuesto adicional de ningún evento nuevo
+Oversampling,Duplicación aleatoria y SMOTENC sobre perfil; antes/después de corrección de prior,Solo entrenamiento de cada corte; nunca sintéticos en evaluación
+Historia inventada,Cuantificar expansión/contradicciones; no entrenar como si fueran observaciones reales,Completar solo conversores depende del desenlace; falta historia previa verificable
+Cuándo convierte,Cox con censura + clasificación multiclase a tres meses,Tiempos desde primera observación; no desde apertura; no inferir nunca
+Periodo = año,Proxies de reloj anual + pruebas de consistencia,Renombrar el reloj no hace que los atributos congelados evolucionen
+Tarjeta sin uso,Cruces tarjeta-recencia y dos alteraciones artificiales,"Transacción es de cuenta/cliente, no necesariamente de tarjeta"

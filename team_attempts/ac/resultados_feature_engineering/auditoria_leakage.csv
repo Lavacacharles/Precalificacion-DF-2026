@@ -1,0 +1,10 @@
+auditoría
+Identidades de features de dominio: OK
+Apertura estimada estable dentro de cliente: OK
+Invariancia al truncar futuro: OK
+Perturbación de covariables/labels futuros: OK
+Encodings congelados al origen: OK
+Exclusión completa del propio cliente: OK
+Exclusión de labels del mismo mes: OK
+Encodings invariantes al truncar panel: OK
+Features numéricas finitas: OK

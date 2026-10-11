@@ -1,0 +1,2 @@
+corte,convergio,mensaje,iteraciones,objetivo,max_gradiente
+11,True,CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL,89,1.7268228219568658,9.05004755433615e-07

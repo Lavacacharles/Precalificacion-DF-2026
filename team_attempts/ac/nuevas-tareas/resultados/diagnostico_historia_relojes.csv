@@ -1,0 +1,9 @@
+,valor
+filas reales train,110100.0
+filas cero inventadas para todos los entrantes,77279.0
+filas cero inventadas solo para futuros conversores,37593.0
+tasa real fila-mes,0.15047229791099
+tasa si se agregaran ceros solo a conversores,0.11217187002769258
+entrantes cuya cuenta no permite volver a enero (margen 1 mes),257.0
+snapshot final imposible reloj mensual (margen 1 mes),284.0
+snapshot final imposible reloj anual (margen 12 meses),4380.0

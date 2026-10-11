@@ -1,0 +1,26 @@
+{
+  "ajustes": 64,
+  "metricas_ensemble": 32,
+  "predicciones_semillas": 637600,
+  "predicciones_ensemble": 318800,
+  "etiquetas_alineadas": true,
+  "metricas_recalculadas": true,
+  "bootstrap_verificado": true,
+  "pares_auditados": true,
+  "pesos_mensuales_iguales": true,
+  "parametros_compartidos": [
+    "iterations",
+    "depth",
+    "learning_rate",
+    "l2_leaf_reg",
+    "leaf_estimation_iterations",
+    "leaf_estimation_method",
+    "boosting_type",
+    "bootstrap_type",
+    "random_strength",
+    "border_count",
+    "one_hot_max_size"
+  ],
+  "seleccion_sin_noviembre": true,
+  "hashes": true
+}

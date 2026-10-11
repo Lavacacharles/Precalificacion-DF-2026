@@ -1,0 +1,4 @@
+modelo,Z,clientes,positivos,tasa,cohortes_train,validado
+Exacto_Z11,11,10400,296,0.02846153846153846,enero,False
+Acumulado_Z11,11,10400,8437,0.81125,enero,False
+Hazard_Z11,11,2259,296,0.13103142983621072,enero,False

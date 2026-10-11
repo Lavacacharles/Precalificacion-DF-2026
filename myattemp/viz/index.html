@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Conversion Panel Explorer</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+</head>
+<body>
+<header>
+  <div class="title">
+    <h1>Conversion panel explorer</h1>
+    <p class="sub">train.csv · Jan–Nov 2026 · every rate is a <b>monthly conversion rate</b>: of the clients present in a month, the share that converts that month. New here? Start with <b>Guide</b>.</p>
+  </div>
+  <nav id="tabs">
+    <button data-tab="guide" class="active">Guide</button>
+    <button data-tab="panel">1 · Panel</button>
+    <button data-tab="audit">2 · Variable audit</button>
+    <button data-tab="integrity">3 · Integrity</button>
+    <button data-tab="explore">4 · Segment explorer</button>
+    <button data-tab="personas">5 · Client types</button>
+    <button data-tab="interaccion">6 · dias_ultima_interaccion</button>
+    <button data-tab="groups">7 · Groups vs reality</button>
+  </nav>
+</header>
+
+<main>
+  <!-- GUIDE -->
+  <section id="guide" class="tab active">
+    <div class="grid2">
+      <div class="card">
+        <h3>What one row is</h3>
+        <p>One client in one calendar month. A client keeps appearing every month <b>until the month they convert</b> (<code>objetivo = 1</code>), then disappears for good. Nobody leaves for any other reason. The 8,061 who never convert are all still present in November.</p>
+        <p>The client's profile (age, income, products, risk band…) is <b>identical in every month</b>. Only <code>dias_ultima_interaccion</code> changes, and that change is injected noise (tab 6).</p>
+        <h3 style="margin-top:14px">The one number used everywhere</h3>
+        <p><b>Monthly conversion rate</b> = conversions ÷ rows, for a group of rows. It is the probability that a client present in a month converts in that month, which is exactly what the competition asks for December. The overall value is <b>15.0%</b>, drawn as a dashed line on every chart.</p>
+      </div>
+      <div class="card">
+        <h3>Glossary</h3>
+        <table class="tbl">
+          <tr><td><b>calendar month</b></td><td>1 = Jan 2026 … 11 = Nov. December (test) = 12.</td></tr>
+          <tr><td><b>months already in panel</b></td><td>How many earlier rows the client has. 0 = first appearance.</td></tr>
+          <tr><td><b>January stock</b></td><td>The 10,400 clients present in January. Later "entrants" have the same kind of profiles; they top each month up to a round size.</td></tr>
+          <tr><td><b>frozen</b></td><td>The value never changes across a client's months.</td></tr>
+          <tr><td><b>Gini</b></td><td>Competition metric, 2·AUC − 1. 0 = random ordering. Per variable: how well that column alone ranks converters above non-converters. A negative sign means a lower value ranks higher.</td></tr>
+          <tr><td><b>whiskers / 95% range</b></td><td>Where the true rate likely is, given how many rows are in the group. Overlapping whiskers = no real difference.</td></tr>
+          <tr><td><b>signal / weak / noise / corrupted</b></td><td>Verdict per variable: moves the rate / only in a tail / flat / overwritten with random values.</td></tr>
+          <tr><td><b>risk band gate</b></td><td>Most effects exist only inside one risk band (e.g. the credit card helps only low risk).</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="card">
+      <h3>Suggested reading order</h3>
+      <ol>
+        <li><b>1 · Panel</b>: how clients enter and leave.</li>
+        <li><b>2 · Variable audit</b>: click each variable; compare "a banker would expect" with "what the data shows".</li>
+        <li><b>3 · Integrity</b>: variables that should be related are not; frozen values; clipping.</li>
+        <li><b>6 · dias_ultima_interaccion</b>: the injected-noise column, client by client.</li>
+        <li><b>4 · Segment explorer</b>: try X = <code>dias_ultima_transaccion</code>, split = <code>banda_riesgo</code> to see the 180-day step for high risk.</li>
+        <li><b>5 · Client types</b>: the rule set summarised as client profiles.</li>
+        <li><b>7 · Groups vs reality</b>: do client groups and the Peruvian calendar behave like real data?</li>
+      </ol>
+      <p class="note">The full argument is in <code>myattemp/02_interaccion_y_objetivo.md</code>. Every claim is re-checked by <code>python myattemp/validate.py</code>.</p>
+    </div>
+  </section>
+
+  <!-- 1. PANEL -->
+  <section id="panel" class="tab">
+    <div class="tiles" id="tiles"></div>
+    <div class="grid2">
+      <div class="card">
+        <h3>Who is in the panel each month</h3>
+        <p class="note">Each bar is one calendar month. <i>Stock</i> = clients already present in January; <i>new</i> = clients who first appear that month. A client leaves only by converting; every non-converter is still there in November.</p>
+        <div id="ch-months"></div>
+      </div>
+      <div class="card">
+        <h3>Monthly conversion rate by months the client has already been in the panel</h3>
+        <p class="note">The mild drop is not "clients cool down". Fast converters leave first, so the clients who remain are the less likely profiles. Once profile and calendar month are accounted for, time in the panel has no effect (validate.py).</p>
+        <div id="ch-k"></div>
+      </div>
+    </div>
+    <div class="card">
+      <h3>Monthly conversion rate by month of first appearance × months already in the panel</h3>
+      <p class="note">Rows = month the client first appears (Jan = stock). Columns = months already in the panel. Color = monthly conversion rate. Hover a cell for counts.</p>
+      <div id="ch-cohort"></div>
+    </div>
+  </section>
+
+  <!-- 2. AUDIT -->
+  <section id="audit" class="tab">
+    <div class="audit-layout">
+      <aside id="var-list"></aside>
+      <div>
+        <div class="card" id="audit-head"></div>
+        <div class="grid2">
+          <div class="card"><h3>Who these clients are (distribution, one row per client)</h3><div id="ch-dist"></div></div>
+          <div class="card"><h3>How often they convert (monthly conversion rate, whiskers = 95% range)</h3><div id="ch-haz"></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. INTEGRITY -->
+  <section id="integrity" class="tab">
+    <div class="grid2">
+      <div class="card">
+        <h3>Do variables relate to each other as they should?</h3>
+        <p class="note">Spearman correlation between all client attributes. Real bank data shows dense structure (income↔occupation, debt↔risk, loan↔debt). Here the matrix is empty: each column was generated independently.</p>
+        <div id="ch-corr"></div>
+      </div>
+      <div class="card">
+        <h3>Expected relationships vs observed</h3>
+        <table id="tb-consistency" class="tbl"></table>
+        <h3 style="margin-top:20px">Artificial bounds (clipping)</h3>
+        <table id="tb-clips" class="tbl"></table>
+      </div>
+    </div>
+    <div class="grid2">
+      <div class="card">
+        <h3>The only time-varying variable is being overwritten</h3>
+        <p class="note">Share of rows where <code>dias_ultima_interaccion</code> equals <code>dias_ultima_transaccion</code>, by calendar month. When different, it is uncorrelated random noise (r ≈ 0).</p>
+        <div id="ch-inter"></div>
+      </div>
+      <div class="card">
+        <h3>…so its predictive power decays month by month</h3>
+        <p class="note">Gini of each recency variable within each month. Transaction recency is stable; interaction recency fades as its copy gets replaced.</p>
+        <div id="ch-inter-gini"></div>
+      </div>
+    </div>
+    <div class="card">
+      <h3>Frozen profiles</h3>
+      <p class="note">Share of multi-month clients whose value changes across their months. Age, account tenure and "days since last transaction" never move, so these are snapshots repeated each month, not monthly measurements.</p>
+      <div id="ch-frozen"></div>
+    </div>
+  </section>
+
+  <!-- 4. EXPLORER -->
+  <section id="explore" class="tab">
+    <div class="controls">
+      <label>X variable <select id="sel-x"></select></label>
+      <label>Split by <select id="sel-split"></select></label>
+      <label>Risk band
+        <span class="chips" id="chips-risk"></span>
+      </label>
+      <label>Product count
+        <span class="chips" id="chips-prod"></span>
+      </label>
+    </div>
+    <div class="card">
+      <h3 id="ex-title"></h3>
+      <div id="ch-explore"></div>
+      <p class="note" id="ex-note"></p>
+    </div>
+  </section>
+
+  <!-- 5. PERSONAS -->
+  <section id="personas" class="tab">
+    <div class="card">
+      <h3>Client types built only from the variables that carry signal</h3>
+      <p class="note">Risk band × product count × transaction recency × app activity. Bar = monthly conversion rate; the label shows the client count. The dashed line is the 15% average. "~N mo" = average months until conversion (1 ÷ rate).</p>
+      <div class="controls">
+        <label>Group by
+          <select id="sel-persona">
+            <option value="risk,products">risk × products</option>
+            <option value="risk,recency">risk × recency</option>
+            <option value="risk,app">risk × app</option>
+            <option value="risk,products,recency">risk × products × recency</option>
+            <option value="risk,products,recency,app">all four</option>
+          </select>
+        </label>
+      </div>
+      <div id="ch-persona"></div>
+    </div>
+  </section>
+  <!-- 6. INTERACCION -->
+  <section id="interaccion" class="tab">
+    <div class="card">
+      <h3>What the column should be vs what it is</h3>
+      <p class="note"><b>Should be:</b> days since the last contact with the client. It should be ≤ days since last transaction (a transaction is a contact), and from month to month it should either reset or grow by about 30.<br>
+      <b>Is:</b> a copy of <code>dias_ultima_transaccion</code> (itself frozen) in which each row is independently overwritten, with probability (month − 1) ÷ 11, by another client's transaction value from the same month. January 0% overwritten → November 91% → December 100%.</p>
+    </div>
+    <div class="card">
+      <h3>Six real clients present all 11 months</h3>
+      <p class="note">Gray line = their <code>dias_ultima_transaccion</code> (never changes). Dots = <code>dias_ultima_interaccion</code>: <b>filled</b> when equal to the transaction value (intact copy), <b>hollow</b> when overwritten. Overwritten values jump randomly; there is no "+30 per month" pattern.</p>
+      <div id="ch-examples" class="small-multiples"></div>
+    </div>
+    <div class="grid2">
+      <div class="card">
+        <h3>Share of intact copies: observed vs the formula (12 − month) ÷ 11</h3>
+        <p class="note">The dots (observed) sit on the dashed line (formula) within 0.12 points every month, so the schedule is exact. Month 12 is December, the test month: 0% intact.</p>
+        <div id="ch-formula"></div>
+      </div>
+      <div class="card">
+        <h3>Does being overwritten change conversion?</h3>
+        <p class="note">Monthly conversion rate for rows with an intact vs an overwritten copy, within the same range of <code>dias_ultima_transaccion</code>. Identical, so the overwritten values carry no information about the target.</p>
+        <div id="ch-samevsrep"></div>
+      </div>
+    </div>
+    <div class="card">
+      <h3>So its apparent predictive power is borrowed and fades</h3>
+      <p class="note">Gini per calendar month. Its whole-train Gini (−0.058, the 4th best variable) is the transaction signal leaking through intact copies. In December none remain. Dropping it costs nothing (LightGBM on November: 0.2322 without vs 0.2306 with).</p>
+      <div id="ch-inter-gini2"></div>
+    </div>
+  </section>
+  <!-- 7. GROUPS VS REALITY -->
+  <section id="groups" class="tab">
+    <div class="card">
+      <h3>The question</h3>
+      <p class="note">If this were real Banco de Crédito del Perú data, client groups would differ from each other (income by region, app use by age, iOS by income…). Their conversion would also react to the Peruvian calendar: <b>gratificación</b> in July (and December), <b>CTS</b> deposits in May and November, the school season in Feb–Mar, and mostly for formal (dependiente) workers. Each check below compares the expected real-world behavior with the data.</p>
+      <div class="tiles" id="g-tiles" style="margin:10px 0 0"></div>
+    </div>
+
+    <div class="grid2">
+      <div class="card">
+        <h3>Fingerprint: 210 dependence tests between client attributes</h3>
+        <p class="note">Every pair of profile columns was tested for any relationship (Kruskal-Wallis, chi-square, Spearman). If columns are independent, p-values are spread evenly, about 10 per bar (dashed line), and about 5% fall below 0.05 by pure chance. Real bank data would pile up at the far left. Here the bars are flat.</p>
+        <div id="ch-fp"></div>
+      </div>
+      <div class="card">
+        <h3>Seasonality: observed ÷ expected conversion by calendar month</h3>
+        <p class="note">Expected = what the client profiles predict. Shaded = Peruvian pay-calendar months (Feb–Mar school, May/Nov CTS, Jul gratificación). The ratio drifts upward steadily (+1.7% per month in odds), with no peaks in the pay months.</p>
+        <div id="ch-season"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Does any group have its own calendar?</h3>
+      <div class="controls"><label>Group <select id="sel-gm"></select></label><span class="note" id="gm-test"></span></div>
+      <p class="note">Each line is one level of the group: observed ÷ expected conversion, after removing the common monthly level. With its own seasonality a line would leave 1.0 in its months (e.g. <i>dependiente</i> rising in May/Jul/Nov). Lines only scatter around 1.0, and the scatter is wider for small groups: that is sampling noise.</p>
+      <div id="ch-gm"></div>
+    </div>
+
+    <div class="card">
+      <h3>Expected in Peru vs observed</h3>
+      <table id="tb-reality" class="tbl"></table>
+      <p class="note">Benchmarks: StatCounter mobile OS share, Peru (Jun–Jul 2026); INEI 2024 labor income (Lima S/2,035, urban S/1,927, rural S/915 per month); Ley 27735 (gratificación Jul/Dec); CTS deposits May/Nov. Income currency in the data is unknown; only within-data contrasts are judged, not levels.</p>
+    </div>
+
+    <div class="grid2">
+      <div class="card">
+        <h3>Do the conversion drivers differ between social groups?</h3>
+        <p class="note">Likelihood-ratio tests. "Main" = does the group shift conversion at all; "× drivers" = do risk band, products, recency, app and card act differently inside the group. Only the acquisition channel passes (p &lt; 0.001); region's p = 0.04 does not survive 6 comparisons.</p>
+        <table id="tb-gs" class="tbl"></table>
+      </div>
+      <div class="card">
+        <h3>The one exception: high-risk clients acquired at a branch</h3>
+        <p class="note">Monthly conversion rate of <b>high-risk</b> clients by channel and by the 180-day transaction step. Branch-acquired high-risk clients convert about 4 points less on both sides of the step; dormant ones almost never convert. In low and medium risk, branch makes no difference.</p>
+        <div id="ch-branch"></div>
+      </div>
+    </div>
+  </section>
+</main>
+<div id="tip" class="tip"></div>
+<script src="app.js"></script>
+</body>
+</html>

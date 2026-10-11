@@ -1,0 +1,39 @@
+# Entornos virtuales
+.venv/
+venv/
+env/
+
+# Caché y archivos compilados de Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Cachés de herramientas de desarrollo y pruebas
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Archivos temporales de Jupyter e IPython
+.ipynb_checkpoints/
+.ipython/
+resultados_feature_engineering/runtime/
+.runtime_conversion_meses/
+
+# Empaquetado de Python
+build/
+dist/
+*.egg-info/
+
+# Configuración local de editores
+.vscode/
+.idea/
+
+# Archivos del sistema operativo
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Contenido descartado localmente
+trash/

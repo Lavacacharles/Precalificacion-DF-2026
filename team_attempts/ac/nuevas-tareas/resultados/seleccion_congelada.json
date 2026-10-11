@@ -1,0 +1,56 @@
+{
+  "chosen": "Edad_ingreso",
+  "selection_months": [
+    202608,
+    202609,
+    202610
+  ],
+  "specs": {
+    "Perfil_control": {
+      "group": "perfil"
+    },
+    "Historia_control": {
+      "group": "historia"
+    },
+    "Edad_ingreso": {
+      "group": "edad_ingreso"
+    },
+    "Dispositivo_ingreso": {
+      "group": "dispositivo"
+    },
+    "Ambos_perfiles": {
+      "group": "perfiles"
+    },
+    "Foto_entrada_mes": {
+      "group": "reloj_mes"
+    },
+    "Foto_entrada_anio": {
+      "group": "reloj_anio"
+    },
+    "Sin_interaccion": {
+      "group": "sin_interaccion"
+    },
+    "Tarjeta_recencia": {
+      "group": "tarjeta"
+    },
+    "Forzar_tarjeta_false": {
+      "group": "historia",
+      "intervention": "flag"
+    },
+    "Forzar_tx_90": {
+      "group": "historia",
+      "intervention": "recencia"
+    },
+    "ROS_perfil": {
+      "group": "perfil",
+      "sampling": "random"
+    },
+    "SMOTENC_perfil": {
+      "group": "perfil",
+      "sampling": "smotenc"
+    }
+  },
+  "criterio": "AUC media ago-oct; desempate log-loss. Sin scores brutos sobremuestreados.",
+  "train_hash": "a714ebcd8587b2cc0f75ae642aa3e4ca5904eea02e249d969a06e8e7380e0567",
+  "source_hash": "1cd181922a43d1938d8ba656b80e4cb70235e87ab77f1c63ba04ef7c5882579a"
+}

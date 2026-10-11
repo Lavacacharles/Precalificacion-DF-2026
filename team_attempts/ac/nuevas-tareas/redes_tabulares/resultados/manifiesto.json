@@ -1,0 +1,84 @@
+{
+  "ajustes": 80,
+  "semillas": [
+    42,
+    137,
+    2026
+  ],
+  "configs": {
+    "MLP": [
+      {
+        "width": 64,
+        "dropout": 0.1,
+        "lr": 0.001,
+        "wd": 0.0001
+      },
+      {
+        "width": 128,
+        "dropout": 0.3,
+        "lr": 0.0005,
+        "wd": 0.001
+      }
+    ],
+    "TabM": [
+      {
+        "width": 64,
+        "dropout": 0.1,
+        "lr": 0.001,
+        "wd": 0.0003,
+        "k": 8
+      },
+      {
+        "width": 128,
+        "dropout": 0.2,
+        "lr": 0.0005,
+        "wd": 0.001,
+        "k": 8
+      }
+    ],
+    "TabNet": [
+      {
+        "width": 8,
+        "lr": 0.02,
+        "wd": 1e-05,
+        "sparse": 0.0001
+      },
+      {
+        "width": 16,
+        "lr": 0.01,
+        "wd": 0.0001,
+        "sparse": 0.001
+      }
+    ],
+    "CatBoost": [
+      {
+        "depth": 4,
+        "learning_rate": 0.04,
+        "l2_leaf_reg": 12
+      },
+      {
+        "depth": 6,
+        "learning_rate": 0.04,
+        "l2_leaf_reg": 12
+      }
+    ]
+  },
+  "python": "3.13.7 (tags/v3.13.7:bcee1c3, Aug 14 2025, 14:15:11) [MSC v.1944 64 bit (AMD64)]",
+  "dispositivo": "cpu",
+  "versiones": {
+    "torch": "2.14.1+cpu",
+    "pytorch-tabnet": "4.1.0",
+    "tabm": "0.0.3",
+    "catboost": "1.2.10",
+    "scikit-learn": "1.9.1"
+  },
+  "hashes": {
+    "train.csv": "a714ebcd8587b2cc0f75ae642aa3e4ca5904eea02e249d969a06e8e7380e0567",
+    "nuevas-tareas\\redes_tabulares\\experimento.py": "f5b98ea6b2fdb57ed970fa48f79cc04a142ad6b06c87e64bfd78acb547c117af",
+    "nuevas-tareas\\redes_tabulares\\modelos.py": "d2afc314456827991475c955ce09d6114a3b59aa4461f7d9f56e12230c167099",
+    "nuevas-tareas\\redes_tabulares\\PROTOCOLO.md": "faa20594961a4bcd4c27e02fa2b680fd997768d6155c48ce012e6a63de69d901",
+    "nuevas-tareas\\experimentos.py": "1cd181922a43d1938d8ba656b80e4cb70235e87ab77f1c63ba04ef7c5882579a",
+    "nuevas-tareas\\ranking_mensual\\experimento.py": "ed46c95f32eb1050c3f61a2ae268bf68a82b6fea1ac00edb6f672ca102c3d83c"
+  },
+  "lee_test": false
+}

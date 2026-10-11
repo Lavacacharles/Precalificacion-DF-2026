@@ -1,0 +1,35 @@
+{
+  "advertencia": "Modelos sin validaci\u00f3n temporal. No predicen test ni participan en selecci\u00f3n.",
+  "script_sha256": "856cc5b5fe2c728d145b451493b8ad22ad675c4f9ed2b036bac55494139bf7b0",
+  "fuente_sha256": "979b6f6e6ae312afc12d245947da3889eba78ecdc809c6e39c345e7585057cfa",
+  "train_sha256": "a714ebcd8587b2cc0f75ae642aa3e4ca5904eea02e249d969a06e8e7380e0567",
+  "columnas": [
+    "edad",
+    "ingresos",
+    "ratio_deuda_ingresos",
+    "antiguedad_cuenta_meses",
+    "numero_productos",
+    "saldo_promedio",
+    "dias_ultima_transaccion",
+    "ocupacion",
+    "region",
+    "canal_adquisicion",
+    "banda_riesgo",
+    "tiene_tarjeta_credito",
+    "activo_movil",
+    "es_nuevo_cliente",
+    "tiene_prestamo",
+    "antiguedad_direccion_meses",
+    "visitas_web_ultimos_90_dias",
+    "distancia_sucursal_km",
+    "dispositivo_principal",
+    "dia_preferido_pago",
+    "tiene_seguro",
+    "dias_ultima_interaccion"
+  ],
+  "archivos_sha256": {
+    "Acumulado_Z11.cbm": "a9f1f840177dc2c2e975a97d031f7fc1f5852f5fd32e89287cb0535fa20589e4",
+    "Exacto_Z11.cbm": "2538bf5c59844c07886cd909aa5d63433e48876eba4e5dbbe51bb25159efd482",
+    "Hazard_Z11.cbm": "61259ab4e3553f541b0d3df8f400821f65273838405ec170d12ddd0b1d67aca5"
+  }
+}

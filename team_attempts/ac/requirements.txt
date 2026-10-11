@@ -1,0 +1,111 @@
+# ============================================================
+# DATAFEST 2026
+# Python: 3.11
+# ============================================================
+
+# -------------------------
+# Core numerical / data
+# -------------------------
+numpy
+pandas
+polars
+pyarrow
+duckdb
+
+# -------------------------
+# Visualization
+# -------------------------
+matplotlib
+seaborn
+plotly
+
+# -------------------------
+# Statistics
+# -------------------------
+scipy
+statsmodels
+
+# -------------------------
+# Machine Learning
+# -------------------------
+scikit-learn
+
+# -------------------------
+# Gradient Boosting
+# -------------------------
+lightgbm
+xgboost
+catboost
+
+# -------------------------
+# Feature Engineering
+# -------------------------
+feature-engine
+category-encoders
+
+# -------------------------
+# Imbalanced Learning
+# -------------------------
+imbalanced-learn
+
+# -------------------------
+# Credit Risk / Scorecards
+# -------------------------
+optbinning
+#scorecardpy
+
+# -------------------------
+# Explainability
+# -------------------------
+shap
+
+# -------------------------
+# Time Series
+# -------------------------
+statsforecast
+skforecast
+
+# -------------------------
+# Optimization
+# -------------------------
+# pulp
+# ortools
+# scipy
+# pyomo
+
+# -------------------------
+# Notebooks
+# -------------------------
+# jupyter
+# jupyterlab
+ipykernel
+# nbformat
+# nbconvert
+
+# -------------------------
+# Utilities
+# -------------------------
+tqdm
+joblib
+openpyxl
+xlsxwriter
+
+# -------------------------
+# Presentation
+# -------------------------
+# python-pptx
+
+# -------------------------
+# Code quality / debugging
+# -------------------------
+# ipython
+# rich
+
+# -------------------------
+# Redes tabulares (experimento en nuevas-tareas/redes_tabulares)
+# PyTorch CPU se instaló desde https://download.pytorch.org/whl/cpu
+# -------------------------
+torch==2.14.1
+pytorch-tabnet==4.1.0
+tabm==0.0.3
+rtdl-num-embeddings==0.0.12

@@ -1,0 +1,34 @@
+[
+  {
+    "modelo": "Hazard_compartido",
+    "universo": "soporte_comun",
+    "n": 7241,
+    "replicas": 1000,
+    "delta_AUC": 0.0,
+    "IC_AUC_95": [
+      0.0,
+      0.0
+    ],
+    "delta_Brier": 0.0,
+    "IC_Brier_95": [
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "modelo": "Hazard_compartido",
+    "universo": "todos",
+    "n": 9500,
+    "replicas": 1000,
+    "delta_AUC": 0.0,
+    "IC_AUC_95": [
+      0.0,
+      0.0
+    ],
+    "delta_Brier": 0.0,
+    "IC_Brier_95": [
+      0.0,
+      0.0
+    ]
+  }
+]

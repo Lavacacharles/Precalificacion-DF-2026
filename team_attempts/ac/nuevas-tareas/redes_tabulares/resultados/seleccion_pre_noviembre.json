@@ -1,0 +1,14 @@
+{
+  "mejor_red": "TabM",
+  "mejor_mezcla": "CatBoost+TabM",
+  "criterio": "AUC media agosto-octubre, probabilidades promedio de tres semillas",
+  "tabla": {
+    "CatBoost": 0.6304548507903953,
+    "CatBoost+TabM": 0.6289731340210726,
+    "CatBoost+TabNet": 0.6289497739403604,
+    "CatBoost+MLP": 0.6278179820236754,
+    "TabM": 0.6261947693721446,
+    "TabNet": 0.6232842621644964,
+    "MLP": 0.623075870469875
+  }
+}

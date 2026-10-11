@@ -1,0 +1,16 @@
+{
+  "criterio": "AUC media agosto-octubre, ensemble de dos semillas",
+  "ranking": "Entrada__PairLogit_20k",
+  "clasificacion": "Entrada__Logloss_mensual",
+  "control_matched": "Entrada__Logloss_mensual",
+  "tabla": {
+    "Entrada__PairLogit_20k": 0.6306710801431321,
+    "Entrada__Logloss_mensual": 0.6301122513972005,
+    "Entrada__Logloss_natural": 0.630000103810198,
+    "Historia__Logloss_natural": 0.6298221813749686,
+    "Historia__Logloss_mensual": 0.6297672972179562,
+    "Historia__PairLogit_20k": 0.6294552167394077,
+    "Entrada__PairLogit_100k": 0.6274846976877474,
+    "Historia__PairLogit_100k": 0.6262038799626389
+  }
+}

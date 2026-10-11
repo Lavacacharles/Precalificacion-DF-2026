@@ -1,0 +1,15 @@
+{
+ "t_eval":10,
+ "t_calib":[
+  8,
+  9
+ ],
+ "metodo":"isotonica",
+ "nombre":"ens_3",
+ "supuestos":"presupuesto S\/ 25,000; canales app (S\/ 0.3, x0.5, cupo sin tope), call_center (S\/ 9.0, x1.0, cupo 1500), asesor (S\/ 35.0, x1.5, cupo 400); valor = clip(1.5% × ingresos, 100, 1500) × (1 − pérdida) × 50% incremental; riesgo alto ≤ 10%; sin contacto si interactuó hace < 7 días; asesor solo a ≤ 10 km.",
+ "contactados_test":6700,
+ "test_app":4914,
+ "test_call_center":1500,
+ "test_asesor":286,
+ "valor_esperado_test":389334
+}

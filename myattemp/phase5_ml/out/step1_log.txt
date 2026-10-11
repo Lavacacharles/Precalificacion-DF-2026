@@ -1,0 +1,55 @@
+rule7 202607 done in 225s
+rule7 202608 done in 240s
+rule7 202609 done in 287s
+rule7 202610 done in 356s
+rule7 202611 done in 309s
+raw 202607 done in 210s
+raw 202608 done in 220s
+raw 202609 done in 237s
+raw 202610 done in 294s
+raw 202611 done in 263s
+            variant  gini_07  gini_08  gini_09  gini_10  gini_11  gini_mean  vs_ref      lo      hi
+     rule7 | logreg   0.2469   0.2415   0.2296   0.2395   0.1983     0.2311 -0.0179 -0.0263 -0.0097
+ rule7 | mlp_direct   0.2479   0.2477   0.2522   0.2569   0.2408     0.2491     NaN     NaN     NaN
+     rule7 | ae_lin   0.2283   0.2051   0.2153   0.2001   0.1631     0.2024 -0.0467 -0.0578 -0.0368
+     rule7 | ae_mlp   0.2637   0.2320   0.2296   0.2361   0.2036     0.2330 -0.0161 -0.0247 -0.0075
+rule7 | ae_finetune   0.2507   0.2465   0.2508   0.2475   0.2390     0.2469 -0.0020 -0.0060  0.0018
+       raw | logreg   0.2500   0.2470   0.2333   0.2396   0.2003     0.2340 -0.0149 -0.0238 -0.0065
+   raw | mlp_direct   0.2628   0.2585   0.2511   0.2436   0.2313     0.2495  0.0005 -0.0049  0.0065
+       raw | ae_lin   0.1609   0.1279   0.1254   0.1534   0.1102     0.1356 -0.1136 -0.1275 -0.1000
+       raw | ae_mlp   0.1626   0.1247   0.1260   0.1524   0.1146     0.1361 -0.1130 -0.1262 -0.1004
+  raw | ae_finetune   0.2573   0.2579   0.2456   0.2515   0.2261     0.2477 -0.0012 -0.0077  0.0053
+set                             raw   rule7
+ae_epochs                   89.0000 99.8000
+banda_riesgo                 0.0030  0.9910
+canal_adquisicion           -0.0020  0.5900
+activo_movil                -0.0020  0.0020
+tiene_tarjeta_credito       -0.0010  0.0020
+numero_productos             0.8450  0.9990
+dias_ultima_transaccion      0.8090  0.9990
+ratio_deuda_ingresos         0.6250  0.9990
+ocupacion                   -0.0040     NaN
+region                      -0.0040     NaN
+dispositivo_principal       -0.0020     NaN
+es_nuevo_cliente            -0.0010     NaN
+tiene_prestamo              -0.0010     NaN
+tiene_seguro                -0.0020     NaN
+edad                         0.9240     NaN
+ingresos                     0.9550     NaN
+antiguedad_cuenta_meses      0.7880     NaN
+saldo_promedio               0.7490     NaN
+antiguedad_direccion_meses   0.8700     NaN
+visitas_web_ultimos_90_dias  0.7140     NaN
+distancia_sucursal_km        0.8360     NaN
+dia_preferido_pago           0.8470     NaN
+  set                      model  params
+rule7                     logreg      14
+rule7                 mlp_direct     369
+rule7 autoencoder (pre-training)     593
+rule7    ae_lin (encoder + head)     297
+rule7       ae_mlp / ae_finetune     341
+  raw                     logreg      39
+  raw                 mlp_direct     769
+  raw autoencoder (pre-training)    1550
+  raw    ae_lin (encoder + head)     769
+  raw       ae_mlp / ae_finetune     841

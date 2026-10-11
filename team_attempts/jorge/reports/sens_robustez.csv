@@ -1,0 +1,5 @@
+prueba,variante,brier,logloss,ece,p_min,p_max,ev_optimo,ev_greedy,ev_aleatorio,realizado_optimo,realizado_greedy,realizado_aleatorio,contactados_optimo,jaccard,ev_aleatorio_sd,realizado_aleatorio_sd
+calibracion,isotonica,0.12727,0.4177,0.0154,0.0,1.0,388855.0,207768.0,113693.0,447275.0,245843.0,124506.0,7020.0,,,
+calibracion,platt,0.12729,0.4169,0.0196,0.012,0.638,384831.0,202871.0,111088.0,444284.0,244146.0,122995.0,6978.0,,,
+coincidencia_contactados,isotonica vs platt,,,,,,,,,,,,,0.949,,
+semillas_aleatorio,20 semillas,,,,,,,,111676.0,,,124754.0,,,1801.0,6388.0

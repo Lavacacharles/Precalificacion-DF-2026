@@ -1,0 +1,29 @@
+familia,ideas,decisión,razón y control
+Exposición,"Meses previos, log1p, primera observación, cohorte enero",Alta / aplicar,cumcount y cummin hasta t; nunca longitud final
+Calendario,Índice de mes y cohorte,Control / aplicar,No hay ciclos anuales repetidos; no asumir estacionalidad
+Recencia dinámica,"Lag 1/2, media y dispersión de 3 meses previos, desviación, cambio",Experimental / aplicar,"shift antes de rolling/expanding, por cliente"
+Tendencia,Diferencia lag1-lag2; frecuencia previa de cambios,Experimental / aplicar,"Es tendencia de una señal posiblemente artificial, no actividad bancaria verificada"
+Recencias cruzadas,Interacción menos transacción; igualdad exacta,Experimental / aplicar,Ambas deben estar disponibles antes de la conversión
+Cruces señal fuerte,"Riesgo × productos, riesgo × móvil, riesgo × bin transacción",Alta / aplicar,Cruces determinísticos; cardinalidad baja
+Exposición × riesgo,Banda de riesgo × bin de exposición,Alta / aplicar,"Compartir información entre nuevos/recurrentes, sin dos modelos separados"
+Canal digital,Canal × dispositivo; móvil × log visitas,Media / aplicar,Sin interpretar como causalidad
+Tipo de canal,"Digital, presencial, asistido remoto e indirecto; afinidad digital",Media / aplicar,Agrupación fija de negocio; conservar también el canal original
+Deuda estimada,Ingreso × ratio; ingreso libre y saldo/deuda,Media / aplicar,Proxy condicionado a que el ratio sea deuda/ingreso; no es un saldo contractual
+Productos observables,"Suma de tarjeta, préstamo y seguro; brecha contra total",Alta / aplicar,Conservar numero_productos porque puede incluir otros productos
+Apertura de cuenta,"Edad de apertura, año estimado y fracción de vida como cliente",Media / aplicar,Anclar en primera observación porque antigüedad está congelada por cliente
+Ratios financieros,Saldo / ingreso mensual; saldo/deuda; saldo e ingreso por producto,Media / aplicar,"Denominadores protegidos; proxies, no capacidad de pago certificada"
+Profundidad de relación,Productos por año de cuenta y fracción de vida como cliente,Media / aplicar,Interacciones determinísticas disponibles en la fila
+Escala,"log1p ingresos, saldo, distancia, transacción",Media / aplicar,Ayuda a modelos suaves; árboles ya son casi invariantes a cambios monótonos
+Binning fijo,Recencia 30/90/180/270 días; exposición 0/2/5,Alta / aplicar,Cortes fijados antes de evaluación
+Binning aprendido,"Cuantiles, WOE o binning óptimo",Posponer,Requiere fit por fold y WOE temporal; mucho solapamiento con árboles/splines
+Splines,Bases suaves para numéricas + one-hot y cruces,Aplicar modelo aditivo,Nudos y escalado solo en el entrenamiento de cada fold
+Encodings sin target,"One-hot, ordinal riesgo, frecuencias pasadas",Aplicar,CatBoost one-hot de baja cardinalidad para evitar CTRs temporales implícitos
+Target encoding,Hazard pasado suavizado de riesgo/productos/recencia,Experimental / aplicar,"Solo meses < t, excluyendo TODA la historia del propio cliente"
+Calidad como señal,"Piso de saldo/ingreso, nuevo con cuenta antigua, flags exceden productos",Media / aplicar,Flags de peculiaridades; no corregir ni inventar valores reales
+Cambios de perfil,"Delta, tasa de crecimiento, rolling de saldo/ingresos",Descartar,Ceros por construcción; multiplicar una constante no crea historia
+Edad/antigüedad corregidas,Sumar meses transcurridos al snapshot,Descartar,La fecha de referencia es desconocida; la apertura estimada se ancla y no inventa envejecimiento
+IDs y memorias,"ID, hash, embedding de cliente, TE de cliente",Descartar,Memorización y proxy de alta; alta cardinalidad sin justificación
+Futuro del cliente,"Último mes, longitud final, aparecer en test, próxima ausencia",Prohibido,Codifican el evento terminal o información futura
+Historial del target,Conversiones previas o media de labels del cliente,Descartar,Para elegibles todos los labels pasados son 0; final de trayectoria filtra
+Supervivencia acumulada,1-producto(1-h_t) a varios meses,Posponer,Requiere hazards futuros y horizontes maduros/purga; no usar labels aún no disponibles
+Clustering / PCA,Segmentos de perfil y componentes,Baja / posponer,Solo fit train; podrían capturar ruido de predictores débiles

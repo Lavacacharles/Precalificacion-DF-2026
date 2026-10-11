@@ -1,0 +1,14 @@
+{
+  "python": "3.13.7 (tags/v3.13.7:bcee1c3, Aug 14 2025, 14:15:11) [MSC v.1944 64 bit (AMD64)]",
+  "catboost": "1.2.10",
+  "ajustes": 64,
+  "semillas": [
+    42,
+    137
+  ],
+  "train_sha256": "a714ebcd8587b2cc0f75ae642aa3e4ca5904eea02e249d969a06e8e7380e0567",
+  "script_sha256": "ed46c95f32eb1050c3f61a2ae268bf68a82b6fea1ac00edb6f672ca102c3d83c",
+  "features_sha256": "1cd181922a43d1938d8ba656b80e4cb70235e87ab77f1c63ba04ef7c5882579a",
+  "protocolo_sha256": "b6bcf1cafa9aa1b5cb17307a170aa053da523b21487e5653378d48d85a53ccf6",
+  "lee_test": false
+}

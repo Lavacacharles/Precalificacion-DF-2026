@@ -1,0 +1,2 @@
+corte,convergio,mensaje,iteraciones,objetivo,max_gradiente
+8,True,CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH,83,1.5292415958830683,1.2555064612713408e-06

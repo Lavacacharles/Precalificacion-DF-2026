@@ -1,0 +1,11 @@
+set,model,params
+rule7,logreg,14
+rule7,mlp_direct,369
+rule7,autoencoder (pre-training),593
+rule7,ae_lin (encoder + head),297
+rule7,ae_mlp / ae_finetune,341
+raw,logreg,39
+raw,mlp_direct,769
+raw,autoencoder (pre-training),1550
+raw,ae_lin (encoder + head),769
+raw,ae_mlp / ae_finetune,841

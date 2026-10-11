@@ -1,0 +1,9 @@
+set,model,params
+rule7,scarf pre-training (encoder + projection),368
+rule7,scarf encoder + (k->8->1) head,341
+rule7,supcon pre-training (encoder + projection),368
+rule7,supcon encoder + (k->8->1) head,341
+raw,scarf pre-training (encoder + projection),904
+raw,scarf encoder + (k->8->1) head,841
+raw,supcon pre-training (encoder + projection),904
+raw,supcon encoder + (k->8->1) head,841

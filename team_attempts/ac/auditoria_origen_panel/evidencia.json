@@ -1,0 +1,687 @@
+{
+  "panel": {
+    "filas": 120000,
+    "clientes": 26467,
+    "clientes_repetidos": 20695,
+    "pares": 93533,
+    "huecos": 0,
+    "congeladas": [
+      "edad",
+      "ingresos",
+      "ratio_deuda_ingresos",
+      "antiguedad_cuenta_meses",
+      "numero_productos",
+      "saldo_promedio",
+      "dias_ultima_transaccion",
+      "ocupacion",
+      "region",
+      "canal_adquisicion",
+      "banda_riesgo",
+      "tiene_tarjeta_credito",
+      "activo_movil",
+      "es_nuevo_cliente",
+      "tiene_prestamo",
+      "antiguedad_direccion_meses",
+      "visitas_web_ultimos_90_dias",
+      "distancia_sucursal_km",
+      "dispositivo_principal",
+      "dia_preferido_pago",
+      "tiene_seguro"
+    ]
+  },
+  "snapshot_final": [
+    {
+      "grupo": "todos_repetidos",
+      "clientes": 20695,
+      "cuenta_inicial_negativa": 416,
+      "cuenta_incompatible_incluso_margen_un_mes": 313,
+      "cuenta_inicial_cero": 117,
+      "direccion_inicial_negativa": 304
+    },
+    {
+      "grupo": "evento_conocido_repetidos",
+      "clientes": 12634,
+      "cuenta_inicial_negativa": 178,
+      "cuenta_incompatible_incluso_margen_un_mes": 125,
+      "cuenta_inicial_cero": 66,
+      "direccion_inicial_negativa": 134
+    },
+    {
+      "grupo": "sin_evento_repetidos",
+      "clientes": 8061,
+      "cuenta_inicial_negativa": 238,
+      "cuenta_incompatible_incluso_margen_un_mes": 188,
+      "cuenta_inicial_cero": 51,
+      "direccion_inicial_negativa": 170
+    }
+  ],
+  "ejemplos": [
+    {
+      "id_cliente": 25,
+      "inicio": 24313,
+      "fin": 24324,
+      "n": 12,
+      "evento": 0.0,
+      "cuenta": 8,
+      "direccion": 15,
+      "edad": 36,
+      "transaccion": 284,
+      "nuevo": false,
+      "span": 11,
+      "cuenta_retro_inicial": -3,
+      "direccion_retro_inicial": 4
+    },
+    {
+      "id_cliente": 32,
+      "inicio": 24313,
+      "fin": 24324,
+      "n": 12,
+      "evento": 0.0,
+      "cuenta": 6,
+      "direccion": 43,
+      "edad": 52,
+      "transaccion": 282,
+      "nuevo": false,
+      "span": 11,
+      "cuenta_retro_inicial": -5,
+      "direccion_retro_inicial": 32
+    },
+    {
+      "id_cliente": 156,
+      "inicio": 24313,
+      "fin": 24321,
+      "n": 9,
+      "evento": 1.0,
+      "cuenta": 6,
+      "direccion": 219,
+      "edad": 32,
+      "transaccion": 133,
+      "nuevo": false,
+      "span": 8,
+      "cuenta_retro_inicial": -2,
+      "direccion_retro_inicial": 211
+    },
+    {
+      "id_cliente": 163,
+      "inicio": 24313,
+      "fin": 24324,
+      "n": 12,
+      "evento": 0.0,
+      "cuenta": 2,
+      "direccion": 140,
+      "edad": 39,
+      "transaccion": 335,
+      "nuevo": false,
+      "span": 11,
+      "cuenta_retro_inicial": -9,
+      "direccion_retro_inicial": 129
+    },
+    {
+      "id_cliente": 197,
+      "inicio": 24313,
+      "fin": 24324,
+      "n": 12,
+      "evento": 0.0,
+      "cuenta": 2,
+      "direccion": 214,
+      "edad": 68,
+      "transaccion": 189,
+      "nuevo": false,
+      "span": 11,
+      "cuenta_retro_inicial": -9,
+      "direccion_retro_inicial": 203
+    },
+    {
+      "id_cliente": 201,
+      "inicio": 24313,
+      "fin": 24321,
+      "n": 9,
+      "evento": 1.0,
+      "cuenta": 1,
+      "direccion": 229,
+      "edad": 70,
+      "transaccion": 100,
+      "nuevo": true,
+      "span": 8,
+      "cuenta_retro_inicial": -7,
+      "direccion_retro_inicial": 221
+    },
+    {
+      "id_cliente": 255,
+      "inicio": 24313,
+      "fin": 24316,
+      "n": 4,
+      "evento": 1.0,
+      "cuenta": 1,
+      "direccion": 164,
+      "edad": 36,
+      "transaccion": 113,
+      "nuevo": false,
+      "span": 3,
+      "cuenta_retro_inicial": -2,
+      "direccion_retro_inicial": 161
+    },
+    {
+      "id_cliente": 302,
+      "inicio": 24313,
+      "fin": 24324,
+      "n": 12,
+      "evento": 0.0,
+      "cuenta": 2,
+      "direccion": 231,
+      "edad": 36,
+      "transaccion": 345,
+      "nuevo": true,
+      "span": 11,
+      "cuenta_retro_inicial": -9,
+      "direccion_retro_inicial": 220
+    }
+  ],
+  "perfiles": {
+    "perfiles_estaticos_unicos": 26467,
+    "clientes": 26467,
+    "fechas_implicitas_distintas_para_transaccion": 20695,
+    "clientes_sin_nuevos_cambios_en_todo_el_ano": 1963,
+    "nuevos_con_cuenta_mas_12": 4707,
+    "nuevos_total": 5044
+  },
+  "limites_por_cliente": [
+    {
+      "variable": "edad",
+      "minimo": 22.0,
+      "maximo": 71.0,
+      "clientes_min": 505,
+      "clientes_max": 532
+    },
+    {
+      "variable": "ingresos",
+      "minimo": 18000.0,
+      "maximo": 145700.07267115777,
+      "clientes_min": 432,
+      "clientes_max": 1
+    },
+    {
+      "variable": "ratio_deuda_ingresos",
+      "minimo": 0.02,
+      "maximo": 0.95,
+      "clientes_min": 40,
+      "clientes_max": 10
+    },
+    {
+      "variable": "saldo_promedio",
+      "minimo": 300.0,
+      "maximo": 90000.0,
+      "clientes_min": 1754,
+      "clientes_max": 2
+    },
+    {
+      "variable": "distancia_sucursal_km",
+      "minimo": 0.2125257076334624,
+      "maximo": 80.0,
+      "clientes_min": 1,
+      "clientes_max": 42
+    }
+  ],
+  "flujo": [
+    {
+      "mes": 202601,
+      "n": 10400,
+      "entrantes": 10400,
+      "entradas_ids_contiguos": true,
+      "continuadores_exactos": true
+    },
+    {
+      "mes": 202602,
+      "n": 9800,
+      "entrantes": 921,
+      "entradas_ids_contiguos": true,
+      "continuadores_exactos": true
+    },
+    {
+      "mes": 202603,
+      "n": 10300,
+      "entrantes": 2043,
+      "entradas_ids_contiguos": true,
+      "continuadores_exactos": true
+    },
+    {
+      "mes": 202604,
+      "n": 9600,
+      "entrantes": 827,
+      "entradas_ids_contiguos": true,
+      "continuadores_exactos": true
+    },
+    {
+      "mes": 202605,
+      "n": 10100,
+      "entrantes": 1973,
+      "entradas_ids_contiguos": true,
+      "continuadores_exactos": true
+    },
+    {
+      "mes": 202606,
+      "n": 10350,
+      "entrantes": 1834,
+      "entradas_ids_contiguos": true,
+      "continuadores_exactos": true
+    },
+    {
+      "mes": 202607,
+      "n": 9700,
+      "entrantes": 950,
+      "entradas_ids_contiguos": true,
+      "continuadores_exactos": true
+    },
+    {
+      "mes": 202608,
+      "n": 10050,
+      "entrantes": 1760,
+      "entradas_ids_contiguos": true,
+      "continuadores_exactos": true
+    },
+    {
+      "mes": 202609,
+      "n": 9900,
+      "entrantes": 1299,
+      "entradas_ids_contiguos": true,
+      "continuadores_exactos": true
+    },
+    {
+      "mes": 202610,
+      "n": 10400,
+      "entrantes": 1893,
+      "entradas_ids_contiguos": true,
+      "continuadores_exactos": true
+    },
+    {
+      "mes": 202611,
+      "n": 9500,
+      "entrantes": 728,
+      "entradas_ids_contiguos": true,
+      "continuadores_exactos": true
+    },
+    {
+      "mes": 202612,
+      "n": 9900,
+      "entrantes": 1839,
+      "entradas_ids_contiguos": true,
+      "continuadores_exactos": true
+    }
+  ],
+  "ruido_recencias": [
+    {
+      "mes": 202601,
+      "n": 10400,
+      "p_ruido_candidato": 0.0,
+      "igualdad_observada": 1.0,
+      "igualdad_esperada_mezcla": 1.0,
+      "diferencia_igualdad": 0.0,
+      "correlacion": 0.9999999999999999,
+      "desacuerdos": 0,
+      "reemplazos_candidatos": 0,
+      "igualdad_residual_en_reemplazos": 0,
+      "mismos_valores_ordenados": true,
+      "media_tx": 184.03884615384615,
+      "media_inter": 184.03884615384615,
+      "KS_recencias": 0.0,
+      "minimo_desacuerdo_decil_id": 0.0,
+      "maximo_desacuerdo_decil_id": 0.0
+    },
+    {
+      "mes": 202602,
+      "n": 9800,
+      "p_ruido_candidato": 0.09090909090909091,
+      "igualdad_observada": 0.9093877551020408,
+      "igualdad_esperada_mezcla": 0.9093517606300405,
+      "diferencia_igualdad": 3.599447200031136e-05,
+      "correlacion": 0.9067270867647003,
+      "desacuerdos": 888,
+      "reemplazos_candidatos": 891,
+      "igualdad_residual_en_reemplazos": 3,
+      "mismos_valores_ordenados": false,
+      "media_tx": 186.2768367346939,
+      "media_inter": 186.60244897959183,
+      "KS_recencias": 0.0029591836734693677,
+      "minimo_desacuerdo_decil_id": 0.07040816326530612,
+      "maximo_desacuerdo_decil_id": 0.10306122448979592
+    },
+    {
+      "mes": 202603,
+      "n": 10300,
+      "p_ruido_candidato": 0.18181818181818182,
+      "igualdad_observada": 0.8189320388349515,
+      "igualdad_esperada_mezcla": 0.8187013359154748,
+      "diferencia_igualdad": 0.00023070291947668853,
+      "correlacion": 0.8077931567081038,
+      "desacuerdos": 1865,
+      "reemplazos_candidatos": 1873,
+      "igualdad_residual_en_reemplazos": 8,
+      "mismos_valores_ordenados": false,
+      "media_tx": 186.89893203883494,
+      "media_inter": 185.48058252427185,
+      "KS_recencias": 0.008058252427184387,
+      "minimo_desacuerdo_decil_id": 0.1524271844660194,
+      "maximo_desacuerdo_decil_id": 0.20194174757281552
+    },
+    {
+      "mes": 202604,
+      "n": 9600,
+      "p_ruido_candidato": 0.2727272727272727,
+      "igualdad_observada": 0.7282291666666667,
+      "igualdad_esperada_mezcla": 0.7280569898200758,
+      "diferencia_igualdad": 0.00017217684659087684,
+      "correlacion": 0.7317134788119987,
+      "desacuerdos": 2609,
+      "reemplazos_candidatos": 2618,
+      "igualdad_residual_en_reemplazos": 9,
+      "mismos_valores_ordenados": false,
+      "media_tx": 189.51541666666665,
+      "media_inter": 189.27885416666666,
+      "KS_recencias": 0.004375000000000018,
+      "minimo_desacuerdo_decil_id": 0.2552083333333333,
+      "maximo_desacuerdo_decil_id": 0.2864583333333333
+    },
+    {
+      "mes": 202605,
+      "n": 10100,
+      "p_ruido_candidato": 0.36363636363636365,
+      "igualdad_observada": 0.6369306930693069,
+      "igualdad_esperada_mezcla": 0.63741109160421,
+      "diferencia_igualdad": -0.00048039853490300377,
+      "correlacion": 0.6383645290396011,
+      "desacuerdos": 3667,
+      "reemplazos_candidatos": 3673,
+      "igualdad_residual_en_reemplazos": 6,
+      "mismos_valores_ordenados": false,
+      "media_tx": 190.78663366336633,
+      "media_inter": 190.41257425742575,
+      "KS_recencias": 0.00544554455445545,
+      "minimo_desacuerdo_decil_id": 0.32772277227722774,
+      "maximo_desacuerdo_decil_id": 0.3811881188118812
+    },
+    {
+      "mes": 202606,
+      "n": 10350,
+      "p_ruido_candidato": 0.45454545454545453,
+      "igualdad_observada": 0.5467632850241546,
+      "igualdad_esperada_mezcla": 0.5467610955172392,
+      "diferencia_igualdad": 2.1895069154398428e-06,
+      "correlacion": 0.5582218161307165,
+      "desacuerdos": 4691,
+      "reemplazos_candidatos": 4705,
+      "igualdad_residual_en_reemplazos": 14,
+      "mismos_valores_ordenados": false,
+      "media_tx": 190.7246376811594,
+      "media_inter": 190.76202898550724,
+      "KS_recencias": 0.004734299516908208,
+      "minimo_desacuerdo_decil_id": 0.4241545893719807,
+      "maximo_desacuerdo_decil_id": 0.4888888888888889
+    },
+    {
+      "mes": 202607,
+      "n": 9700,
+      "p_ruido_candidato": 0.5454545454545454,
+      "igualdad_observada": 0.4565979381443299,
+      "igualdad_esperada_mezcla": 0.4561172726306535,
+      "diferencia_igualdad": 0.00048066551367642596,
+      "correlacion": 0.4460757434725613,
+      "desacuerdos": 5271,
+      "reemplazos_candidatos": 5291,
+      "igualdad_residual_en_reemplazos": 20,
+      "mismos_valores_ordenados": false,
+      "media_tx": 192.0818556701031,
+      "media_inter": 190.56608247422682,
+      "KS_recencias": 0.0076288659793814495,
+      "minimo_desacuerdo_decil_id": 0.5268041237113402,
+      "maximo_desacuerdo_decil_id": 0.5670103092783505
+    },
+    {
+      "mes": 202608,
+      "n": 10050,
+      "p_ruido_candidato": 0.6363636363636364,
+      "igualdad_observada": 0.3653731343283582,
+      "igualdad_esperada_mezcla": 0.3654602374828706,
+      "diferencia_igualdad": -8.710315451238015e-05,
+      "correlacion": 0.366393202790067,
+      "desacuerdos": 6378,
+      "reemplazos_candidatos": 6395,
+      "igualdad_residual_en_reemplazos": 17,
+      "mismos_valores_ordenados": false,
+      "media_tx": 192.30557213930348,
+      "media_inter": 192.8444776119403,
+      "KS_recencias": 0.005174129353233858,
+      "minimo_desacuerdo_decil_id": 0.608955223880597,
+      "maximo_desacuerdo_decil_id": 0.6497512437810945
+    },
+    {
+      "mes": 202609,
+      "n": 9900,
+      "p_ruido_candidato": 0.7272727272727273,
+      "igualdad_observada": 0.27595959595959596,
+      "igualdad_esperada_mezcla": 0.2748215005889937,
+      "diferencia_igualdad": 0.0011380953706022767,
+      "correlacion": 0.2886396566979022,
+      "desacuerdos": 7168,
+      "reemplazos_candidatos": 7200,
+      "igualdad_residual_en_reemplazos": 32,
+      "mismos_valores_ordenados": false,
+      "media_tx": 193.4328282828283,
+      "media_inter": 194.08848484848485,
+      "KS_recencias": 0.004848484848484824,
+      "minimo_desacuerdo_decil_id": 0.702020202020202,
+      "maximo_desacuerdo_decil_id": 0.7454545454545455
+    },
+    {
+      "mes": 202610,
+      "n": 10400,
+      "p_ruido_candidato": 0.8181818181818182,
+      "igualdad_observada": 0.18432692307692308,
+      "igualdad_esperada_mezcla": 0.18416636968800426,
+      "diferencia_igualdad": 0.00016055338891882154,
+      "correlacion": 0.18815461832836838,
+      "desacuerdos": 8483,
+      "reemplazos_candidatos": 8509,
+      "igualdad_residual_en_reemplazos": 26,
+      "mismos_valores_ordenados": false,
+      "media_tx": 192.8391346153846,
+      "media_inter": 193.67634615384614,
+      "KS_recencias": 0.006730769230769207,
+      "minimo_desacuerdo_decil_id": 0.8028846153846154,
+      "maximo_desacuerdo_decil_id": 0.8375
+    },
+    {
+      "mes": 202611,
+      "n": 9500,
+      "p_ruido_candidato": 0.9090909090909091,
+      "igualdad_observada": 0.094,
+      "igualdad_esperada_mezcla": 0.0935415159909343,
+      "diferencia_igualdad": 0.00045848400906570164,
+      "correlacion": 0.10180320538278727,
+      "desacuerdos": 8607,
+      "reemplazos_candidatos": 8636,
+      "igualdad_residual_en_reemplazos": 29,
+      "mismos_valores_ordenados": false,
+      "media_tx": 194.1822105263158,
+      "media_inter": 194.36484210526316,
+      "KS_recencias": 0.0026315789473684292,
+      "minimo_desacuerdo_decil_id": 0.8842105263157894,
+      "maximo_desacuerdo_decil_id": 0.9168421052631579
+    },
+    {
+      "mes": 202612,
+      "n": 9900,
+      "p_ruido_candidato": 1.0,
+      "igualdad_observada": 0.0026262626262626263,
+      "igualdad_esperada_mezcla": 0.0028924395469850017,
+      "diferencia_igualdad": -0.0002661769207223754,
+      "correlacion": -0.0028206067117904233,
+      "desacuerdos": 9874,
+      "reemplazos_candidatos": 9900,
+      "igualdad_residual_en_reemplazos": 26,
+      "mismos_valores_ordenados": true,
+      "media_tx": 194.30727272727273,
+      "media_inter": 194.30727272727273,
+      "KS_recencias": 0.0,
+      "minimo_desacuerdo_decil_id": 0.9949494949494949,
+      "maximo_desacuerdo_decil_id": 1.0
+    }
+  ],
+  "ajuste_lineal_igualdad": {
+    "pendiente": -0.996847022845143,
+    "intercepto": 1.0000174108252873,
+    "R2": 0.9999984784658728,
+    "error_max_mezcla_puntos_porcentuales": 0.11380953706022767
+  },
+  "igualdad_por_entrada": [
+    {
+      "mes": 202601,
+      "primera_obs": true,
+      "mean": 1.0,
+      "size": 10400
+    },
+    {
+      "mes": 202602,
+      "primera_obs": false,
+      "mean": 0.9105755152607276,
+      "size": 8879
+    },
+    {
+      "mes": 202602,
+      "primera_obs": true,
+      "mean": 0.8979370249728555,
+      "size": 921
+    },
+    {
+      "mes": 202603,
+      "primera_obs": false,
+      "mean": 0.8237858786484196,
+      "size": 8257
+    },
+    {
+      "mes": 202603,
+      "primera_obs": true,
+      "mean": 0.7993147332354381,
+      "size": 2043
+    },
+    {
+      "mes": 202604,
+      "primera_obs": false,
+      "mean": 0.7284851248147726,
+      "size": 8773
+    },
+    {
+      "mes": 202604,
+      "primera_obs": true,
+      "mean": 0.7255139056831923,
+      "size": 827
+    },
+    {
+      "mes": 202605,
+      "primera_obs": false,
+      "mean": 0.6339362618432386,
+      "size": 8127
+    },
+    {
+      "mes": 202605,
+      "primera_obs": true,
+      "mean": 0.6492650785605677,
+      "size": 1973
+    },
+    {
+      "mes": 202606,
+      "primera_obs": false,
+      "mean": 0.5446218882104275,
+      "size": 8516
+    },
+    {
+      "mes": 202606,
+      "primera_obs": true,
+      "mean": 0.5567066521264995,
+      "size": 1834
+    },
+    {
+      "mes": 202607,
+      "primera_obs": false,
+      "mean": 0.4569142857142857,
+      "size": 8750
+    },
+    {
+      "mes": 202607,
+      "primera_obs": true,
+      "mean": 0.4536842105263158,
+      "size": 950
+    },
+    {
+      "mes": 202608,
+      "primera_obs": false,
+      "mean": 0.36851628468033776,
+      "size": 8290
+    },
+    {
+      "mes": 202608,
+      "primera_obs": true,
+      "mean": 0.35056818181818183,
+      "size": 1760
+    },
+    {
+      "mes": 202609,
+      "primera_obs": false,
+      "mean": 0.27589815137774676,
+      "size": 8601
+    },
+    {
+      "mes": 202609,
+      "primera_obs": true,
+      "mean": 0.2763664357197845,
+      "size": 1299
+    },
+    {
+      "mes": 202610,
+      "primera_obs": false,
+      "mean": 0.18408369577994593,
+      "size": 8507
+    },
+    {
+      "mes": 202610,
+      "primera_obs": true,
+      "mean": 0.18541996830427893,
+      "size": 1893
+    },
+    {
+      "mes": 202611,
+      "primera_obs": false,
+      "mean": 0.09439124487004104,
+      "size": 8772
+    },
+    {
+      "mes": 202611,
+      "primera_obs": true,
+      "mean": 0.08928571428571429,
+      "size": 728
+    },
+    {
+      "mes": 202612,
+      "primera_obs": false,
+      "mean": 0.00297729810197246,
+      "size": 8061
+    },
+    {
+      "mes": 202612,
+      "primera_obs": true,
+      "mean": 0.001087547580206634,
+      "size": 1839
+    }
+  ],
+  "recencia_fisica": {
+    "pares": 93533,
+    "incrementos_mayores_que_dias_transcurridos": 25944,
+    "incrementos_mayores_62": 21212,
+    "max_incremento": 362.0,
+    "max_descenso": -362.0
+  },
+  "correlaciones_clientes": {
+    "cuenta": -0.019836940347742055,
+    "direccion": -0.0008008340709816185,
+    "edad": -0.013713591450407436
+  }
+}

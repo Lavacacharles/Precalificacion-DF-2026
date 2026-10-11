@@ -1,0 +1,12 @@
+{
+  "criterio": "AUC media agosto-octubre, soporte com\u00fan",
+  "elegido": "Hazard_compartido",
+  "ranking": {
+    "Hazard_compartido": 0.6346849113571419,
+    "Hazard_logistico": 0.6254501042001571,
+    "Exactos_independientes": 0.6227849317950608,
+    "Hazard_separado": 0.622361660806531,
+    "PMF_censurada": 0.6173475130982516,
+    "CDF_monotona": 0.6165969886670345
+  }
+}

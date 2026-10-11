@@ -1,0 +1,559 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Plan DataFest 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Escenario fijo de 1920x1080 escalado a la ventana, como las demos de lanzamiento.
+   Escenas oscuras (tesis) y claras (detalle). Azul marino con acento naranja: guiño al reto BCP × ESAN. */
+:root{
+  --navy:#0C2340; --deep:#071731; --blue:#1F4FA8; --blue2:#3567C9; --orange:#F5821F; --orange2:#FFB074;
+  --sky:#F2F5FA; --line:#D6DEEB; --ink2:#4A5875; --ink3:#8592AB; --paper:#FFFFFF;
+  --ok:#2F8F5B; --ok-soft:#E3F2E9; --bad:#C8553D; --bad-soft:#FBE7E2;
+  --sans:"Inter","Segoe UI",system-ui,sans-serif; --disp:"Poppins","Segoe UI",sans-serif; --mono:"JetBrains Mono",Consolas,monospace;
+  color-scheme:dark;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;overflow:hidden;background:#040E20}
+body{font-family:var(--sans);color:var(--navy);-webkit-font-smoothing:antialiased}
+#stage{position:fixed;left:0;top:0;width:1920px;height:1080px;transform-origin:0 0;overflow:hidden}
+.sc{position:absolute;inset:0;overflow:hidden;opacity:0;visibility:hidden;transition:opacity .6s ease,visibility 0s linear .6s}
+.sc.on{opacity:1;visibility:visible;transition:opacity .6s ease}
+.dark{background:radial-gradient(1100px 620px at 88% -10%,rgba(245,130,31,.20),transparent 62%),radial-gradient(900px 700px at -10% 110%,rgba(53,103,201,.38),transparent 62%),linear-gradient(135deg,#123063 0%,#0C2340 55%,#071731 100%);color:#fff}
+.light{background:radial-gradient(1000px 520px at 92% -8%,rgba(245,130,31,.10),transparent 62%),radial-gradient(900px 620px at -6% 108%,rgba(31,79,168,.10),transparent 62%),linear-gradient(180deg,#F8FAFD 0%,#EAF0F8 100%);color:var(--navy)}
+.grid{position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.07) 1px,transparent 1.3px);background-size:30px 30px}
+.eb{font:600 18px/1 var(--disp);letter-spacing:.2em;text-transform:uppercase;color:var(--orange)}
+.light .eb{color:var(--blue)}
+.h1{font:700 64px/1.08 var(--disp);letter-spacing:-.02em;text-wrap:balance}
+.h1 em{font-style:normal;color:var(--orange)}
+.light .h1 em{color:var(--blue)}
+.sub{font:400 26px/1.45 var(--sans)}
+.dark .sub{color:rgba(255,255,255,.78)}
+.light .sub{color:var(--ink2)}
+.hdr{position:absolute;left:120px;top:84px;width:1680px}
+.hdr .h1{margin-top:18px;font-size:54px}
+.src{position:absolute;left:120px;bottom:44px;font:400 14px/1.3 var(--mono);color:var(--ink3)}
+.dark .src{color:rgba(255,255,255,.45)}
+#foot{position:absolute;left:120px;right:120px;bottom:16px;display:flex;justify-content:space-between;font:500 13px/1 var(--sans);color:var(--ink3);z-index:5;transition:color .6s}
+#foot b{color:var(--orange);font-weight:600}
+#foot.ondark{color:rgba(255,255,255,.5)}
+
+/* revelado por pasos dentro de cada escena */
+.f{opacity:0;transform:translateY(22px);transition:opacity .55s ease,transform .55s cubic-bezier(.2,.8,.2,1)}
+.f.in{opacity:1;transform:none}
+.f.pop{transform:scale(.94)}
+.f.pop.in{transform:none}
+
+/* 1 · portada */
+#s1 .c{position:absolute;left:160px;top:250px;width:1600px}
+#s1 .h1{font-size:96px;line-height:1.04;margin-top:30px}
+#s1 .h1 span{background:linear-gradient(90deg,#FFB074,#FFFFFF);-webkit-background-clip:text;background-clip:text;color:transparent}
+#s1 .sub{margin-top:36px;max-width:1150px;font-size:30px}
+#s1 .tags{position:absolute;left:160px;bottom:120px;display:flex;gap:14px}
+.tag{font:600 16px/1 var(--sans);letter-spacing:.06em;padding:12px 18px;border-radius:999px;border:1.5px solid rgba(255,255,255,.28);color:rgba(255,255,255,.9)}
+.tag.o{border-color:var(--orange);color:var(--orange2)}
+
+/* 2 · el reto */
+#tiles2{position:absolute;left:120px;top:300px;width:1680px;display:flex;gap:22px}
+.tile{flex:1;border-radius:24px;background:var(--paper);border:1px solid var(--line);padding:28px 30px;box-shadow:0 16px 34px -18px rgba(12,35,64,.3)}
+.tile .v{font:700 64px/1 var(--disp);color:var(--blue);letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.tile .v small{font-size:28px;color:var(--ink3);margin-left:6px}
+.tile .l{margin-top:14px;font:500 20px/1.35 var(--sans);color:var(--ink2)}
+#find2{position:absolute;left:120px;top:560px;width:1680px;display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.find{border-radius:22px;padding:26px 30px;background:var(--paper);border:1.5px solid var(--line);display:flex;gap:22px;align-items:flex-start}
+.find i{flex:none;width:46px;height:46px;border-radius:14px;background:var(--navy);color:#fff;font:700 18px/46px var(--disp);text-align:center;font-style:normal}
+.find b{display:block;font:600 25px/1.25 var(--disp);color:var(--navy)}
+.find span{display:block;margin-top:8px;font:400 19px/1.45 var(--sans);color:var(--ink2)}
+.find.hot{border-color:var(--orange);background:#FFF8F1}
+.find.hot i{background:var(--orange)}
+
+/* 3 · lecciones 2025 */
+.cols{position:absolute;left:120px;top:290px;width:1680px;display:flex;gap:40px}
+.col{flex:1;border-radius:26px;padding:34px 40px;min-height:540px}
+.col.a{background:var(--paper);border:1.5px solid var(--line)}
+.col.b{background:linear-gradient(135deg,#1F4FA8,#0C2340);color:#fff;box-shadow:0 30px 60px -30px rgba(12,35,64,.6)}
+.col h3{font:700 20px/1 var(--disp);letter-spacing:.14em;text-transform:uppercase}
+.col.a h3{color:var(--ink3)}
+.col.b h3{color:var(--orange2)}
+.col .it{position:relative;margin-top:28px;padding-left:50px;font:500 25px/1.32 var(--sans)}
+.col .it small{display:block;margin-top:6px;font:400 18px/1.4 var(--sans)}
+.col.a .it{color:var(--navy)}
+.col.a .it small{color:var(--ink2)}
+.col.b .it small{color:rgba(255,255,255,.72)}
+.col .it i{position:absolute;left:0;top:2px;width:32px;height:32px;border-radius:50%;font:700 17px/32px var(--sans);text-align:center;font-style:normal}
+.col.a .it i{background:var(--bad-soft);color:var(--bad)}
+.col.b .it i{background:rgba(245,130,31,.3);color:#fff}
+
+/* 4 · AGENTS.md */
+#arch{position:absolute;left:120px;top:300px;width:1680px;height:600px}
+.box{position:absolute;border-radius:24px;padding:26px 28px}
+.k-in{width:430px;background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.2)}
+.k-in b{display:block;font:600 24px/1.2 var(--disp);color:#fff}
+.k-in span{display:block;margin-top:8px;font:400 18px/1.4 var(--sans);color:rgba(255,255,255,.72)}
+#core{left:600px;top:40px;width:520px;height:520px;background:linear-gradient(160deg,#F5821F,#C9620F);color:#fff;box-shadow:0 40px 80px -30px rgba(245,130,31,.55)}
+#core .t{font:700 46px/1 var(--mono);letter-spacing:-.01em}
+#core .d{margin-top:12px;font:500 20px/1.4 var(--sans);color:rgba(255,255,255,.9)}
+#core ul{list-style:none;margin-top:22px;display:flex;flex-direction:column;gap:10px}
+#core li{font:500 19px/1.3 var(--mono);background:rgba(7,23,49,.22);border-radius:10px;padding:10px 14px}
+#asks4{position:absolute;left:1260px;top:40px;width:420px;display:flex;flex-direction:column;gap:14px}
+#asks4 .h{font:700 16px/1 var(--disp);letter-spacing:.16em;color:var(--orange2);margin-bottom:6px}
+.chip{border-radius:16px;background:#fff;color:var(--navy);padding:16px 20px;font:600 21px/1.25 var(--sans);box-shadow:0 18px 36px -22px rgba(0,0,0,.6)}
+.chip small{display:block;margin-top:5px;font:400 15px/1.35 var(--sans);color:var(--ink2)}
+.arrow{position:absolute;height:3px;background:linear-gradient(90deg,rgba(255,255,255,.15),rgba(255,176,116,.9));border-radius:2px}
+.arrow::after{content:"";position:absolute;right:-2px;top:-6px;border:7.5px solid transparent;border-left:11px solid rgba(255,176,116,.9);border-right:0}
+
+/* 5 · flujo y roles */
+#flow5{position:absolute;left:120px;top:290px;width:1680px;display:flex;gap:26px;align-items:stretch}
+.role{flex:1;border-radius:24px;background:var(--paper);border:1.5px solid var(--line);padding:26px 26px 24px;box-shadow:0 20px 40px -26px rgba(12,35,64,.45);display:flex;flex-direction:column}
+.role .n{width:46px;height:46px;border-radius:50%;background:var(--navy);color:#fff;font:700 19px/46px var(--disp);text-align:center}
+.role h4{margin-top:16px;font:700 28px/1.1 var(--disp);color:var(--navy)}
+.role p{margin-top:10px;font:400 18px/1.45 var(--sans);color:var(--ink2)}
+.role ul{margin-top:14px;list-style:none;display:flex;flex-direction:column;gap:8px}
+.role li{font:500 17px/1.35 var(--sans);color:var(--navy);padding-left:18px;position:relative}
+.role li::before{content:"";position:absolute;left:0;top:9px;width:7px;height:7px;border-radius:50%;background:var(--blue2)}
+.role .fw{margin-top:auto;padding-top:18px;display:flex;flex-wrap:wrap;gap:8px}
+.role .fw span{font:600 14px/1 var(--mono);color:var(--blue);background:#E8EEF9;border-radius:8px;padding:8px 10px}
+.role.biz{background:linear-gradient(135deg,#1F4FA8,#0C2340);border:none}
+.role.biz .n{background:var(--orange)}
+.role.biz h4{color:#fff}
+.role.biz p,.role.biz li{color:rgba(255,255,255,.85)}
+.role.biz li::before{background:var(--orange)}
+.role.biz .fw span{background:rgba(255,255,255,.12);color:#fff}
+#band5{position:absolute;left:120px;top:870px;width:1680px;height:76px;border-radius:18px;border:2px dashed var(--orange);display:flex;align-items:center;justify-content:center;font:600 24px/1 var(--disp);color:var(--navy)}
+#band5 em{font-style:normal;color:var(--orange);margin:0 10px}
+
+/* 6 · data engineering */
+#de6{position:absolute;left:120px;top:290px;width:1680px;display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.ph{border-radius:22px;background:var(--paper);border:1.5px solid var(--line);padding:22px 24px;min-height:300px}
+.ph small{font:700 15px/1 var(--sans);letter-spacing:.14em;color:var(--blue)}
+.ph b{display:block;margin-top:12px;font:600 26px/1.15 var(--disp);color:var(--navy)}
+.ph span{display:block;margin-top:12px;font:400 18px/1.45 var(--sans);color:var(--ink2)}
+.ph code{font:500 15px/1 var(--mono);color:var(--blue)}
+#ins6{position:absolute;left:120px;top:640px;width:1680px;height:260px;border-radius:26px;background:linear-gradient(135deg,#1F4FA8 0%,#0C2340 60%,#071731 100%);color:#fff;display:flex;align-items:center;padding:0 48px;gap:56px}
+#ins6 .q{font:700 15px/1 var(--disp);letter-spacing:.16em;color:var(--orange2)}
+#ins6 .m{margin-top:14px;font:600 34px/1.22 var(--disp);max-width:760px}
+#ins6 .m b{color:var(--orange2)}
+#ins6 .k{display:flex;gap:40px;margin-left:auto}
+#ins6 .k div{font:500 18px/1.3 var(--sans);color:rgba(255,255,255,.78)}
+#ins6 .k div b{display:block;font:700 54px/1 var(--disp);color:#fff;margin-bottom:8px;font-variant-numeric:tabular-nums}
+
+/* 7 · ML */
+#lad7{position:absolute;left:120px;top:290px;width:900px;height:600px;border-radius:24px;background:var(--paper);border:1px solid var(--line);padding:30px 36px}
+#lad7 h5{font:600 22px/1 var(--disp);color:var(--navy)}
+#lad7 h5 span{font:400 16px/1 var(--sans);color:var(--ink3);margin-left:10px}
+.br{display:grid;grid-template-columns:280px 1fr 90px;align-items:center;gap:16px;margin-top:22px}
+.br .lb{font:500 19px/1.25 var(--sans);color:var(--navy)}
+.br .lb small{display:block;font:400 14px/1.2 var(--mono);color:var(--ink3);margin-top:3px}
+.br .tr{height:34px;border-radius:8px;background:#EEF2F8;position:relative;overflow:hidden}
+.br .bar{position:absolute;left:0;top:0;bottom:0;border-radius:8px;background:linear-gradient(90deg,#9DB4DE,var(--blue));width:0;transition:width 1s cubic-bezier(.2,.8,.2,1)}
+.br.best .bar{background:linear-gradient(90deg,#FFB074,var(--orange))}
+.br .vl{font:700 24px/1 var(--disp);color:var(--navy);text-align:right;font-variant-numeric:tabular-nums}
+.br.best .vl{color:var(--orange)}
+#axis7{display:grid;grid-template-columns:280px 1fr 90px;gap:16px;margin-top:10px}
+#axis7 div:nth-child(2){display:flex;justify-content:space-between;font:400 13px/1 var(--mono);color:var(--ink3)}
+#lad7 .nt{margin-top:22px;font:400 17px/1.45 var(--sans);color:var(--ink2)}
+#bey7{position:absolute;left:1060px;top:290px;width:740px;display:flex;flex-direction:column;gap:14px}
+#bey7 .h{font:700 16px/1 var(--disp);letter-spacing:.16em;color:var(--blue)}
+.bx{border-radius:18px;background:var(--paper);border:1.5px solid var(--line);padding:18px 22px;display:flex;gap:18px;align-items:flex-start}
+.bx i{flex:none;font:700 15px/1 var(--mono);color:var(--orange);margin-top:5px;font-style:normal}
+.bx b{display:block;font:600 21px/1.2 var(--disp);color:var(--navy)}
+.bx span{display:block;margin-top:5px;font:400 16px/1.4 var(--sans);color:var(--ink2)}
+
+/* 8 · optimización */
+#form8{position:absolute;left:120px;top:290px;width:780px;border-radius:24px;background:rgba(255,255,255,.07);border:1.5px solid rgba(255,255,255,.18);padding:28px 32px}
+#form8 .t{font:700 16px/1 var(--disp);letter-spacing:.16em;color:var(--orange2)}
+#form8 pre{margin-top:16px;font:500 22px/1.5 var(--mono);color:#fff;white-space:pre-wrap}
+#form8 pre b{color:var(--orange2);font-weight:600}
+#cons8{margin-top:18px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+#cons8 div{border-radius:12px;background:rgba(255,255,255,.08);padding:12px 14px;font:500 16px/1.35 var(--sans);color:rgba(255,255,255,.88)}
+#cons8 div code{font:700 14px/1 var(--mono);color:var(--orange2);margin-right:8px}
+#res8{position:absolute;left:960px;top:290px;width:840px;border-radius:24px;background:#fff;color:var(--navy);padding:28px 34px;height:610px}
+#res8 h5{font:600 22px/1 var(--disp)}
+#res8 h5 span{font:400 16px/1 var(--sans);color:var(--ink3);margin-left:8px}
+.vb{display:grid;grid-template-columns:150px 1fr 190px;gap:16px;align-items:center;margin-top:26px}
+.vb .lb{font:600 20px/1.2 var(--disp)}
+.vb .lb small{display:block;font:400 14px/1.3 var(--sans);color:var(--ink3);margin-top:4px}
+.vb .tr{height:52px;border-radius:10px;background:#EEF2F8;position:relative;overflow:hidden}
+.vb .bar{position:absolute;left:0;top:0;bottom:0;width:0;border-radius:10px;background:#B9C6DD;transition:width 1.1s cubic-bezier(.2,.8,.2,1)}
+.vb.g .bar{background:linear-gradient(90deg,#9DB4DE,var(--blue))}
+.vb.o .bar{background:linear-gradient(90deg,#FFB074,var(--orange))}
+.vb .vl{font:700 30px/1 var(--disp);text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+.vb.o .vl{color:var(--orange)}
+#deltas8{display:flex;gap:18px;margin-top:30px}
+#deltas8 div{flex:1;border-radius:16px;background:var(--sky);padding:18px 20px;font:500 16px/1.35 var(--sans);color:var(--ink2)}
+#deltas8 div b{display:block;font:700 34px/1 var(--disp);color:var(--navy);margin-bottom:8px}
+#deltas8 div.o b{color:var(--orange)}
+#res8 .nt{margin-top:18px;font:400 15px/1.45 var(--sans);color:var(--ink3)}
+
+/* 9 · negocio */
+#lift9{position:absolute;left:120px;top:290px;width:1020px;height:610px;border-radius:24px;background:var(--paper);border:1px solid var(--line);padding:28px 34px}
+#lift9 h5{font:600 22px/1 var(--disp);color:var(--navy)}
+#lift9 h5 span{font:400 16px/1 var(--sans);color:var(--ink3);margin-left:8px}
+#lift9 svg{margin-top:12px;width:952px;height:500px;display:block}
+#say9{position:absolute;left:1180px;top:290px;width:620px;display:flex;flex-direction:column;gap:16px}
+.say{border-radius:20px;padding:22px 26px;background:var(--paper);border:1.5px solid var(--line)}
+.say small{font:700 14px/1 var(--sans);letter-spacing:.14em;color:var(--ink3)}
+.say b{display:block;margin-top:10px;font:600 25px/1.3 var(--disp);color:var(--navy)}
+.say b em{font-style:normal;color:var(--orange)}
+.say.hi{background:linear-gradient(135deg,#1F4FA8,#0C2340);border:none}
+.say.hi small{color:var(--orange2)}
+.say.hi b{color:#fff}
+.say.hi b em{color:var(--orange2)}
+
+/* 10 · día del reto */
+#tl10{position:absolute;left:120px;top:300px;width:1680px}
+.tlr{display:grid;grid-template-columns:200px 1fr 280px;align-items:center;gap:26px;height:84px;border-bottom:1px solid var(--line)}
+.tlr .h{font:700 24px/1 var(--mono);color:var(--blue)}
+.tlr .w{font:500 23px/1.3 var(--sans);color:var(--navy)}
+.tlr .w small{display:block;margin-top:4px;font:400 17px/1.3 var(--sans);color:var(--ink2)}
+.tlr .r{justify-self:end;font:600 15px/1 var(--sans);letter-spacing:.06em;color:var(--blue);background:#E8EEF9;border-radius:999px;padding:9px 14px}
+.tlr.key .h{color:var(--orange)}
+.tlr.key .r{background:#FFEBD9;color:#A9520C}
+
+/* 11 · cierre */
+#next11{position:absolute;left:120px;top:290px;width:1680px;display:flex;gap:26px}
+.nx{flex:1;border-radius:24px;background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.2);padding:28px 30px;min-height:290px}
+.nx small{font:700 15px/1 var(--sans);letter-spacing:.14em;color:var(--orange2)}
+.nx b{display:block;margin-top:14px;font:600 28px/1.2 var(--disp);color:#fff}
+.nx span{display:block;margin-top:12px;font:400 19px/1.45 var(--sans);color:rgba(255,255,255,.75)}
+#fin11{position:absolute;left:120px;top:660px;width:1680px;height:230px;border-radius:26px;background:linear-gradient(135deg,#F5821F 0%,#C9620F 100%);color:#fff;padding:0 54px;display:flex;align-items:center;overflow:hidden}
+#fin11 .m{position:relative;font:700 50px/1.15 var(--disp);letter-spacing:-.01em}
+#fin11 .m em{font-style:normal;color:var(--deep)}
+#fin11 .w{margin-left:auto;text-align:right;font:500 20px/1.4 var(--sans);color:rgba(255,255,255,.9)}
+#fin11 .w b{display:block;font:600 26px/1.2 var(--disp);color:#fff}
+
+/* controles */
+#ctl{position:fixed;left:50%;bottom:calc(18px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);width:min(760px,92vw);height:50px;background:rgba(7,23,49,.86);backdrop-filter:blur(12px);border-radius:14px;display:flex;align-items:center;gap:12px;padding:0 14px;color:#fff;font:500 13px/1 var(--sans);z-index:100;transition:opacity .35s}
+#ctl.hide{opacity:0;pointer-events:none}
+#ctl button{background:none;border:0;color:#fff;font:600 15px/1 var(--sans);cursor:pointer;min-width:34px;height:32px;border-radius:8px}
+#ctl button:hover,#ctl button:focus-visible{background:rgba(255,255,255,.14);outline:none}
+#dots{flex:1;display:flex;gap:6px;align-items:center;justify-content:center}
+#dots i{width:22px;height:5px;border-radius:3px;background:rgba(255,255,255,.25);cursor:pointer;transition:background .3s,width .3s}
+#dots i.on{background:var(--orange);width:36px}
+#num{font-variant-numeric:tabular-nums;min-width:64px;text-align:right;color:rgba(255,255,255,.75)}
+@media (prefers-reduced-motion:reduce){.sc,.f,.bar{transition:none!important}}
+</style>
+
+<div id="stage">
+
+  <!-- 1 · portada -->
+  <section class="sc dark" id="s1" data-dark><div class="grid"></div>
+    <div class="c">
+      <div class="eb f">DataFest 2026 · Reto BCP × ESAN · Plan del equipo</div>
+      <div class="h1 f">Ganamos el reto<br><span>antes del día del reto.</span></div>
+      <div class="sub f">Un AGENTS.md con lo que aprendimos en retos pasados y lo que sabemos de banca. El día final solo afinamos: <em style="font-style:normal;color:#FFB074">"prueba este modelo"</em>, <em style="font-style:normal;color:#FFB074">"añade estas variables"</em>.</div>
+    </div>
+    <div class="tags f"><span class="tag o">Data Engineering</span><span class="tag">Machine Learning</span><span class="tag">Optimización</span><span class="tag o">Caso de negocio</span></div>
+  </section>
+
+  <!-- 2 · el reto -->
+  <section class="sc light" id="s2">
+    <div class="hdr"><div class="eb">El ensayo · dataset de práctica 2026</div><div class="h1">¿Qué clientes van a <em>convertir</em> en diciembre?</div></div>
+    <div id="tiles2">
+      <div class="tile f"><div class="v">110.100</div><div class="l">filas cliente-mes de entrenamiento, de enero a noviembre</div></div>
+      <div class="tile f"><div class="v">9.900</div><div class="l">clientes a predecir en diciembre</div></div>
+      <div class="tile f"><div class="v">15<small>%</small></div><div class="l">convierte cada mes, estable todo el año</div></div>
+      <div class="tile f"><div class="v">Gini</div><div class="l">= 2·AUC − 1. Solo importa el orden: se entrega probabilidad</div></div>
+    </div>
+    <div id="find2">
+      <div class="find hot f"><i>1</i><div><b>Es un panel de supervivencia</b><span>Cuando un cliente convierte, sale del panel. El test son los 8.061 que siguen sin convertir en noviembre más 1.839 clientes nuevos.</span></div></div>
+      <div class="find f"><i>2</i><div><b>Las variables son fijas por cliente</b><span>Solo <code style="font-family:var(--mono);font-size:16px">dias_ultima_interaccion</code> cambia mes a mes. La señal temporal hay que construirla con historia.</span></div></div>
+      <div class="find f"><i>3</i><div><b>Señal baja: cada punto de Gini cuesta</b><span>Las más fuertes: número de productos, banda de riesgo, recencia de transacción y app activa.</span></div></div>
+      <div class="find f"><i>4</i><div><b>Sin restricciones en el enunciado</b><span>Proponemos nosotros el caso de optimización. Es donde nos diferenciamos.</span></div></div>
+    </div>
+    <div class="src">Fuente: reports/perfil.md · RETO.md</div>
+  </section>
+
+  <!-- 3 · lecciones -->
+  <section class="sc light" id="s3">
+    <div class="hdr"><div class="eb">DataFest 2025 · Best Channel to Contact</div><div class="h1">Lo que aprendimos el año pasado ya es <em>regla</em></div></div>
+    <div class="cols">
+      <div class="col a"><h3>Lo que nos costó en 2025</h3>
+        <div class="it f"><i>✕</i>Entregamos 0/1 en vez de probabilidad<small>El 77,6 % marcado como 1 dejó el Gini en ~0,22</small></div>
+        <div class="it f"><i>✕</i>Optimización greedy, por orden de prioridad<small>Asignaba bien, pero dejaba valor sobre la mesa</small></div>
+        <div class="it f"><i>✕</i>Probabilidades sin calibrar<small>El valor esperado en soles quedaba distorsionado</small></div>
+        <div class="it f"><i>✕</i>Tasas del 100 % detectadas tarde<small>Préstamo y vehicular: sesgo de selección, no señal</small></div>
+      </div>
+      <div class="col b"><h3>Reglas del AGENTS.md 2026</h3>
+        <div class="it f"><i>R1</i>Métrica de orden → se entrega probabilidad<small>Si piden 0/1, el umbral maximiza la métrica oficial</small></div>
+        <div class="it f"><i>R7</i>Programación lineal entera con OR-Tools<small>Siempre comparada contra greedy y contra aleatorio</small></div>
+        <div class="it f"><i>R8</i>Calibración isotónica antes de hablar de soles<small>La probabilidad alimenta el valor esperado</small></div>
+        <div class="it f"><i>R6</i>Desconfiar de lo perfecto<small>0 %, 100 % o una variable demasiado buena se investiga antes de usarse</small></div>
+      </div>
+    </div>
+    <div class="src">Fuente: /UTEC/DataFest/REPORTE_TECNICO.md · solution_v3.py · playbooks/lecciones-retos-pasados.md</div>
+  </section>
+
+  <!-- 4 · AGENTS.md -->
+  <section class="sc dark" id="s4" data-dark><div class="grid"></div>
+    <div class="hdr"><div class="eb">La estrategia</div><div class="h1">Un cerebro compartido para el equipo y sus agentes</div></div>
+    <div id="arch">
+      <div class="box k-in f" style="left:0;top:40px"><b>Retos pasados</b><span>2025: errores, aciertos y el patrón del BCP: propensión + canales con cupos.</span></div>
+      <div class="box k-in f" style="left:0;top:220px"><b>Saber de banca</b><span>Venta cruzada, apetito de riesgo, costo por venta, canales y regulación SBS.</span></div>
+      <div class="box k-in f" style="left:0;top:400px"><b>Forma de trabajo</b><span>Roles, validación temporal, registro de experimentos y cómo se vende.</span></div>
+      <div class="arrow f" style="left:450px;top:110px;width:130px;transform:rotate(14deg)"></div>
+      <div class="arrow f" style="left:450px;top:292px;width:130px"></div>
+      <div class="arrow f" style="left:450px;top:472px;width:130px;transform:rotate(-14deg)"></div>
+      <div class="box f pop" id="core"><div class="t">AGENTS.md</div><div class="d">Lo cargan Claude Code, OpenCode, Copilot o Cursor antes de tocar el reto.</div>
+        <ul><li>RETO.md · ficha de la hora cero</li><li>playbooks/ · uno por rol</li><li>src/ · pipeline listo y probado</li><li>reports/ · cada cifra con su archivo</li></ul></div>
+      <div class="arrow f" style="left:1140px;top:292px;width:100px"></div>
+      <div id="asks4">
+        <div class="h f">EL DÍA DEL RETO SOLO PEDIMOS</div>
+        <div class="chip f">"prueba CatBoost"<small>validación temporal + registro + delta contra el campeón</small></div>
+        <div class="chip f">"añade estas variables"<small>con historia sin fuga de información (shift)</small></div>
+        <div class="chip f">"optimiza con 3.000 cupos"<small>re-resuelve y compara contra greedy</small></div>
+        <div class="chip f">"genera la entrega"<small>formato validado automáticamente</small></div>
+      </div>
+    </div>
+    <div class="src">Fuente: AGENTS.md §3 · Cómo pedirle cosas al agente</div>
+  </section>
+
+  <!-- 5 · roles -->
+  <section class="sc light" id="s5">
+    <div class="hdr"><div class="eb">El flujo y los roles</div><div class="h1">Cuatro roles, un pipeline, un relato</div></div>
+    <div id="flow5">
+      <div class="role f"><div class="n">1</div><h4>Data Engineer</h4><p>Datos confiables y variables con sentido de negocio.</p>
+        <ul><li>Análisis preliminar automático</li><li>EDA orientado a decisiones</li><li>Limpieza con chequeos</li><li>Afinamiento y creación de variables</li></ul>
+        <div class="fw"><span>pandas</span><span>pyarrow</span><span>PSI</span><span>adversarial</span></div></div>
+      <div class="role f"><div class="n">2</div><h4>Machine Learning</h4><p>El mejor orden de clientes, estable en el tiempo y explicable.</p>
+        <ul><li>Validación walk-forward mensual</li><li>Escalera: logística → boosting</li><li>Supervivencia y ensambles</li><li>SHAP y calibración</li></ul>
+        <div class="fw"><span>LightGBM</span><span>CatBoost</span><span>XGBoost</span><span>Optuna</span><span>SHAP</span></div></div>
+      <div class="role f"><div class="n">3</div><h4>Optimización</h4><p>De probabilidades a decisiones: a quién, por qué canal y con qué presupuesto.</p>
+        <ul><li>Restricciones con su porqué</li><li>Programación lineal entera</li><li>Aleatorio vs greedy vs óptimo</li><li>Sensibilidad y precios sombra</li></ul>
+        <div class="fw"><span>OR-Tools</span><span>SCIP</span></div></div>
+      <div class="role biz f"><div class="n">4</div><h4>Caso de negocio</h4><p>El hilo que cruza todo: cada rol responde "¿qué significa para el banco?".</p>
+        <ul><li>Lift y captura por decil</li><li>Soles por campaña</li><li>Producción y riesgos</li><li>Pitch de 5 a 7 minutos</li></ul>
+        <div class="fw"><span>reports/negocio.md</span></div></div>
+    </div>
+    <div id="band5" class="f">Al final no gana el modelo más complejo:<em>gana la decisión mejor defendida.</em></div>
+    <div class="src" style="bottom:44px;left:1100px">Fuente: playbooks/00 a 04</div>
+  </section>
+
+  <!-- 6 · data engineering -->
+  <section class="sc light" id="s6">
+    <div class="hdr"><div class="eb">Rol 1 · Data Engineering</div><div class="h1">Entender el dato antes de modelarlo</div></div>
+    <div id="de6">
+      <div class="ph f"><small>FASE 1 · 30 MIN</small><b>Análisis preliminar</b><span>Llave, panel, composición del test, variables fijas y categorías nuevas.</span><span><code>python -m src.de_profile</code></span></div>
+      <div class="ph f"><small>FASE 2</small><b>EDA para decidir</b><span>Gini por variable, drift (PSI), validación adversarial y coherencia con la intuición bancaria.</span></div>
+      <div class="ph f"><small>FASE 3</small><b>Limpieza</b><span>Tipos, flags de valores imposibles y chequeos que fallan en voz alta. Nunca se borran filas del test.</span></div>
+      <div class="ph f"><small>FASE 4</small><b>Variables</b><span>Supervivencia, dinámica de interacción, capacidad de pago, vinculación y ciclo del mes. Todas sin fuga.</span></div>
+    </div>
+    <div id="ins6" class="f">
+      <div><div class="q">LO QUE YA ENCONTRÓ EN EL ENSAYO</div>
+        <div class="m">La historia hay que <b>construirla</b>: el cliente sale del panel al convertir y casi nada cambia mes a mes.</div></div>
+      <div class="k"><div><b>21 de 22</b>variables fijas por cliente</div><div><b>55 %</b>filas con dos recencias iguales</div></div>
+    </div>
+    <div class="src">Fuente: reports/perfil.md · playbooks/01-data-engineering.md</div>
+  </section>
+
+  <!-- 7 · ML -->
+  <section class="sc light" id="s7">
+    <div class="hdr"><div class="eb">Rol 2 · Machine Learning</div><div class="h1">Una escalera de modelos, validada mes a mes</div></div>
+    <div id="lad7" class="f">
+      <h5>Gini medio en validación temporal<span>4 folds: agosto a noviembre · ensayo del 03/10</span></h5>
+      <div class="br" data-v="0.231"><div class="lb">Regresión logística<small>piso honesto</small></div><div class="tr"><div class="bar"></div></div><div class="vl">0,231</div></div>
+      <div class="br" data-v="0.251"><div class="lb">LightGBM<small>variables originales</small></div><div class="tr"><div class="bar"></div></div><div class="vl">0,251</div></div>
+      <div class="br" data-v="0.2533"><div class="lb">LightGBM + historia<small>supervivencia · interacción · recencias</small></div><div class="tr"><div class="bar"></div></div><div class="vl">0,253</div></div>
+      <div class="br" data-v="0.2539"><div class="lb">CatBoost + historia<small>categóricas nativas</small></div><div class="tr"><div class="bar"></div></div><div class="vl">0,254</div></div>
+      <div class="br best" data-v="0.2543"><div class="lb">Ensamble de 3<small>promedio de rankings</small></div><div class="tr"><div class="bar"></div></div><div class="vl">0,254</div></div>
+      <div id="axis7"><div></div><div><span>0</span><span>0,10</span><span>0,20</span><span>0,30</span></div><div></div></div>
+      <div class="nt">Este es el punto de partida, no el techo. La desviación entre folds (±0,015) es mayor que las mejoras: por eso cada cambio se valida con varias semillas antes de adoptarse.</div>
+    </div>
+    <div id="bey7">
+      <div class="h f">MÁS ALLÁ DE LO CONVENCIONAL</div>
+      <div class="bx f"><i>01</i><div><b>Supervivencia en tiempo discreto</b><span>Modelo de hazard: quien lleva meses sin convertir es menos propenso (efecto frailty).</span></div></div>
+      <div class="bx f"><i>02</i><div><b>Restricciones monótonas</b><span>Más vinculación nunca baja la propensión. Robusto y defendible ante riesgos.</span></div></div>
+      <div class="bx f"><i>03</i><div><b>Explicable para la SBS</b><span>SHAP global y por cliente, y perfiles de los deciles altos.</span></div></div>
+      <div class="bx f"><i>04</i><div><b>Calibración + validación adversarial</b><span>Probabilidades reales para la optimización, y control de qué separa el test del train.</span></div></div>
+      <div class="bx f"><i>05</i><div><b>Optuna sobre folds temporales</b><span>Con límite de pruebas: con poca señal, sobreajustar la validación es un riesgo real.</span></div></div>
+    </div>
+    <div class="src">Fuente: reports/experimentos.csv · playbooks/02-ml.md</div>
+  </section>
+
+  <!-- 8 · optimización -->
+  <section class="sc dark" id="s8" data-dark><div class="grid"></div>
+    <div class="hdr"><div class="eb">Rol 3 · Optimización · restricciones propuestas por el equipo</div><div class="h1">De probabilidades a <em>decisiones</em> de campaña</div></div>
+    <div id="form8" class="f">
+      <div class="t">FORMULACIÓN · PROGRAMACIÓN LINEAL ENTERA</div>
+      <pre>max Σ x<sub>i,c</sub> · ( <b>p<sub>i</sub></b> · efect<sub>c</sub> · valor<sub>i</sub> − costo<sub>c</sub> )</pre>
+      <div id="cons8">
+        <div><code>C1</code>Un contacto por cliente al mes</div>
+        <div><code>C2</code>Cupos: call center 1.500 · asesor 400</div>
+        <div><code>C3</code>Presupuesto de S/ 25.000</div>
+        <div><code>C4</code>App solo si usa la app; asesor si la sucursal está a ≤ 10 km</div>
+        <div><code>C5</code>Riesgo alto ≤ 10 % de los contactados</div>
+        <div><code>C6</code>No contactar si interactuó hace &lt; 7 días</div>
+      </div>
+    </div>
+    <div id="res8" class="f">
+      <h5>Valor esperado neto de una campaña<span>noviembre (validación) · mismo presupuesto y mismas reglas</span></h5>
+      <div class="vb" data-v="623503"><div class="lb">Aleatorio<small>sin modelo</small></div><div class="tr"><div class="bar"></div></div><div class="vl">S/ 624 mil</div></div>
+      <div class="vb g" data-v="857723"><div class="lb">Greedy<small>top por probabilidad</small></div><div class="tr"><div class="bar"></div></div><div class="vl">S/ 858 mil</div></div>
+      <div class="vb o" data-v="1109177"><div class="lb">Óptimo<small>OR-Tools</small></div><div class="tr"><div class="bar"></div></div><div class="vl">S/ 1,11 M</div></div>
+      <div id="deltas8">
+        <div><b>+S/ 234 mil</b>valor del modelo<br>(greedy − aleatorio)</div>
+        <div class="o"><b>+S/ 251 mil</b>valor de la optimización<br>(óptimo − greedy)</div>
+        <div><b>1.158</b>conversiones reales entre los contactados, contra 753 del greedy</div>
+      </div>
+      <div class="nt">Costos, efectividad por canal y márgenes son supuestos ilustrativos (config.OPT). El óptimo contacta a más clientes porque reparte mejor el presupuesto entre canales baratos y caros.</div>
+    </div>
+    <div class="src">Fuente: reports/optimizacion.md · src/optimize.py</div>
+  </section>
+
+  <!-- 9 · negocio -->
+  <section class="sc light" id="s9">
+    <div class="hdr"><div class="eb">Rol 4 · Caso de negocio</div><div class="h1">Traducimos el Gini al idioma del banco</div></div>
+    <div id="lift9" class="f">
+      <h5>Lift por decil de propensión<span>tasa del decil ÷ tasa base (14,8 %) · validación agosto a noviembre</span></h5>
+      <svg id="liftsvg" viewBox="0 0 952 500" role="img" aria-label="Lift por decil: el decil 1 convierte 2,01 veces la tasa base y el decil 10 convierte 0,32 veces"></svg>
+    </div>
+    <div id="say9">
+      <div class="say hi f"><small>EN LA REUNIÓN CON NEGOCIO</small><b>"El 10 % que elegimos convierte <em>el doble</em> que contactar al azar: 29,8 % contra 14,8 %."</b></div>
+      <div class="say f"><small>CAPTURA</small><b>Con el 30 % de los contactos capturamos el <em>43 %</em> de las conversiones.</b></div>
+      <div class="say f"><small>A QUIÉN NO LLAMAR</small><b>Los dos últimos deciles convierten <em>7,9 % y 4,8 %</em>: se ahorra el costo de llamarlos.</b></div>
+      <div class="say f"><small>PRODUCCIÓN</small><b>Reentrenamiento mensual, monitoreo de deriva y un piloto A/B para medir el efecto real del contacto.</b></div>
+    </div>
+    <div class="src">Fuente: reports/negocio.md · reports/deciles.csv</div>
+  </section>
+
+  <!-- 10 · día del reto -->
+  <section class="sc light" id="s10">
+    <div class="hdr"><div class="eb">El día del reto final</div><div class="h1">Un guion por horas, sin improvisar</div></div>
+    <div id="tl10">
+      <div class="tlr f"><div class="h">H0</div><div class="w">Leer el enunciado, llenar RETO.md y ajustar config.py<small>El código no se toca: solo la configuración del reto</small></div><div class="r">TODOS</div></div>
+      <div class="tlr key f"><div class="h">H0:30</div><div class="w">Perfil automático y entrega de seguridad<small>Desde aquí solo se mejora</small></div><div class="r">DATA ENG + ML</div></div>
+      <div class="tlr f"><div class="h">H1–H3</div><div class="w">EDA, variables y escalera de modelos en paralelo<small>Cada experimento queda en experimentos.csv</small></div><div class="r">DATA ENG ↔ ML</div></div>
+      <div class="tlr f"><div class="h">H2–H4</div><div class="w">Optimización con restricciones oficiales o propuestas<small>Aleatorio vs greedy vs óptimo, más sensibilidad</small></div><div class="r">OPTIMIZACIÓN</div></div>
+      <div class="tlr key f"><div class="h">H3</div><div class="w">Congelar cifras y armar el pitch<small>La presentación se arma desde la H3, no al final</small></div><div class="r">NEGOCIO + TODOS</div></div>
+      <div class="tlr f"><div class="h">Última hora</div><div class="w">Ensayo con cronómetro, sin tocar código<small>Preguntas del jurado ya respondidas</small></div><div class="r">TODOS</div></div>
+    </div>
+    <div class="src">Fuente: playbooks/04-entrega-y-pitch.md</div>
+  </section>
+
+  <!-- 11 · cierre -->
+  <section class="sc dark" id="s11" data-dark><div class="grid"></div>
+    <div class="hdr"><div class="eb">Próximos pasos</div><div class="h1">Lo que hacemos desde hoy</div></div>
+    <div id="next11">
+      <div class="nx f"><small>DATA ENGINEERING</small><b>Exprimir la historia del cliente</b><span>Hazard por cohorte, interacción por mes y la anomalía de las dos recencias.</span></div>
+      <div class="nx f"><small>MACHINE LEARNING</small><b>Superar 0,254 con estabilidad</b><span>Supervivencia discreta, monotonía, Optuna y semillas múltiples.</span></div>
+      <div class="nx f"><small>OPTIMIZACIÓN</small><b>Sensibilidad y precios sombra</b><span>Curva presupuesto → valor y el costo de cada restricción.</span></div>
+      <div class="nx f"><small>TODOS</small><b>Afinar el AGENTS.md</b><span>Cada lección del ensayo se vuelve una regla o un pedido corto.</span></div>
+    </div>
+    <div id="fin11" class="f"><div class="m">El día del reto no empezamos de cero.<br><em>Solo afinamos.</em></div>
+      <div class="w"><b>DataFest 2026</b>Reto BCP × ESAN · Plan del equipo</div></div>
+  </section>
+
+  <div id="foot"><span><b>DataFest 2026</b> · Reto BCP × ESAN · Plan de desarrollo</span><span id="fnum">1 / 11</span></div>
+</div>
+
+<div id="ctl">
+  <button id="bprev" title="Anterior (←)" aria-label="Anterior">←</button>
+  <div id="dots"></div>
+  <span id="num">1 / 11</span>
+  <button id="bnext" title="Siguiente (→ o espacio)" aria-label="Siguiente">→</button>
+  <button id="bfull" title="Pantalla completa (F)" aria-label="Pantalla completa">⛶</button>
+</div>
+
+<script>
+(() => {
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const stage = $('#stage'), scenes = $$('.sc'), N = scenes.length;
+  let cur = 0, step = 0;
+
+  function fit() {
+    const k = Math.min(innerWidth / 1920, innerHeight / 1080);
+    stage.style.transform = `translate(${(innerWidth - 1920 * k) / 2}px,${(innerHeight - 1080 * k) / 2}px) scale(${k})`;
+  }
+  addEventListener('resize', fit); fit();
+
+  // Gráfico de lift (cifras de reports/deciles.csv)
+  const LIFT = [2.01, 1.25, 1.05, 1.07, 0.97, 0.94, 0.95, 0.91, 0.53, 0.32];
+  (function drawLift() {
+    const svg = $('#liftsvg'), W = 952, H = 500, L = 56, R = 16, T = 20, B = 54, max = 2.2;
+    const y = v => T + (H - T - B) * (1 - v / max), bw = (W - L - R) / 10;
+    let h = '';
+    [0, 0.5, 1, 1.5, 2].forEach(v => {
+      h += `<line x1="${L}" x2="${W - R}" y1="${y(v)}" y2="${y(v)}" stroke="#E3E9F2" stroke-width="1"/>`;
+      h += `<text x="${L - 12}" y="${y(v) + 5}" text-anchor="end" font-family="JetBrains Mono,monospace" font-size="14" fill="#8592AB">${v.toFixed(1).replace('.', ',')}x</text>`;
+    });
+    LIFT.forEach((v, i) => {
+      const x = L + i * bw + bw * 0.16, w = bw * 0.68, top = y(v), base = y(0);
+      const c = i === 0 ? '#F5821F' : (i >= 8 ? '#C8D2E3' : '#3567C9');
+      h += `<rect class="lb" data-h="${base - top}" x="${x}" y="${base}" width="${w}" height="0" rx="6" fill="${c}"/>`;
+      h += `<text class="lt" x="${x + w / 2}" y="${top - 10}" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="700" font-size="${i === 0 ? 22 : 17}" fill="${i === 0 ? '#F5821F' : '#0C2340'}" opacity="0">${v.toFixed(2).replace('.', ',')}</text>`;
+      h += `<text x="${x + w / 2}" y="${H - B + 26}" text-anchor="middle" font-family="Inter,sans-serif" font-size="15" fill="#4A5875">D${i + 1}</text>`;
+    });
+    h += `<line x1="${L}" x2="${W - R}" y1="${y(1)}" y2="${y(1)}" stroke="#F5821F" stroke-width="2" stroke-dasharray="7 6"/>`;
+    h += `<text x="${W - R}" y="${y(1) - 10}" text-anchor="end" font-family="Inter,sans-serif" font-weight="600" font-size="14" fill="#C9620F">contactar al azar = 1,0x</text>`;
+    h += `<text x="${L}" y="${H - 6}" font-family="Inter,sans-serif" font-size="14" fill="#8592AB">D1 = 10 % más propenso · D10 = 10 % menos propenso</text>`;
+    svg.innerHTML = h;
+  })();
+
+  function animateCharts(sc, on) {
+    $$('.br', sc).forEach((b, i) => { const bar = $('.bar', b); bar.style.transitionDelay = on ? `${0.15 + i * 0.12}s` : '0s'; bar.style.width = on ? `${(+b.dataset.v / 0.30) * 100}%` : '0'; });
+    $$('.vb', sc).forEach((b, i) => { const bar = $('.bar', b); bar.style.transitionDelay = on ? `${0.2 + i * 0.25}s` : '0s'; bar.style.width = on ? `${(+b.dataset.v / 1200000) * 100}%` : '0'; });
+    $$('rect.lb', sc).forEach((r, i) => {
+      const h = +r.dataset.h, base = +r.getAttribute('y') + (+r.getAttribute('height'));
+      r.style.transition = on ? `y .9s cubic-bezier(.2,.8,.2,1) ${0.2 + i * 0.07}s, height .9s cubic-bezier(.2,.8,.2,1) ${0.2 + i * 0.07}s` : 'none';
+      r.setAttribute('height', on ? h : 0); r.setAttribute('y', on ? base - h : base);
+    });
+    $$('text.lt', sc).forEach((t, i) => { t.style.transition = on ? `opacity .4s ${0.8 + i * 0.07}s` : 'none'; t.setAttribute('opacity', on ? 1 : 0); });
+  }
+
+  const frags = sc => $$('.f', sc);
+  const dots = $('#dots');
+  scenes.forEach((_, i) => { const d = document.createElement('i'); d.title = `Escena ${i + 1}`; d.onclick = () => go(i, true); dots.appendChild(d); });
+
+  function render() {
+    scenes.forEach((s, i) => s.classList.toggle('on', i === cur));
+    frags(scenes[cur]).forEach((f, i) => f.classList.toggle('in', i < step));
+    $$('#dots i').forEach((d, i) => d.classList.toggle('on', i === cur));
+    $('#num').textContent = $('#fnum').textContent = `${cur + 1} / ${N}`;
+    $('#foot').classList.toggle('ondark', scenes[cur].hasAttribute('data-dark'));
+    try { localStorage.setItem('plan-datafest-escena', cur); } catch (e) {}
+  }
+
+  // Al entrar a una escena se muestran de golpe los bloques de "estructura" y se revela el resto paso a paso.
+  function autoStep(sc) { const n = frags(sc).length; return n <= 4 ? n : Math.min(n, 3); }
+
+  function go(i, full) {
+    if (i < 0 || i >= N) return;
+    animateCharts(scenes[cur], false);
+    cur = i;
+    step = full ? frags(scenes[cur]).length : autoStep(scenes[cur]);
+    render();
+    setTimeout(() => animateCharts(scenes[cur], true), 120);
+  }
+  function next() {
+    const n = frags(scenes[cur]).length;
+    if (step < n) { step = Math.min(n, step + 1); render(); } else go(cur + 1);
+  }
+  function prev() {
+    if (step > autoStep(scenes[cur])) { step--; render(); } else go(cur - 1, true);
+  }
+
+  addEventListener('keydown', e => {
+    if (['ArrowRight', ' ', 'PageDown', 'Enter'].includes(e.key)) { e.preventDefault(); next(); }
+    else if (['ArrowLeft', 'PageUp', 'Backspace'].includes(e.key)) { e.preventDefault(); prev(); }
+    else if (e.key === 'Home' || e.key === '0') go(0);
+    else if (e.key === 'End') go(N - 1, true);
+    else if (/^[1-9]$/.test(e.key)) go(+e.key - 1, true);
+    else if (e.key.toLowerCase() === 'f') full();
+    else if (e.key.toLowerCase() === 'h') $('#ctl').classList.toggle('hide');
+  });
+  stage.addEventListener('click', e => { (e.clientX > innerWidth / 3 ? next : prev)(); });
+  $('#bnext').onclick = next; $('#bprev').onclick = prev; $('#bfull').onclick = full;
+  function full() { try { document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen().catch(() => {}); } catch (e) {} }
+
+  let hideT; addEventListener('mousemove', () => { $('#ctl').classList.remove('hide'); clearTimeout(hideT); hideT = setTimeout(() => $('#ctl').classList.add('hide'), 2600); });
+
+  let start = 0;
+  try { const s = +localStorage.getItem('plan-datafest-escena'); if (s > 0 && s < N) start = s; } catch (e) {}
+  if (location.hash && /^#\d+$/.test(location.hash)) start = Math.min(N - 1, Math.max(0, +location.hash.slice(1) - 1));
+  go(start, start > 0);
+})();
+</script>
+
+</html>

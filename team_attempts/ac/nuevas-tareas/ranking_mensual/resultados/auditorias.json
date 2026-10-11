@@ -1,0 +1,12 @@
+{
+  "filas": 110100,
+  "usuarios": 24628,
+  "features": {
+    "Entrada": 23,
+    "Historia": 33
+  },
+  "invariancia_futuro": true,
+  "independencia_etiquetas": true,
+  "solo_one_hot": true,
+  "metricas_empates": true
+}

@@ -1,0 +1,75 @@
+{
+  "selected": "CB_historia",
+  "members": [
+    "CB_historia"
+  ],
+  "weights": [
+    1.0
+  ],
+  "selection_months": [
+    202608,
+    202609,
+    202610
+  ],
+  "mean_auc_individual": 0.6307838921923602,
+  "mean_auc_ensemble": 0.6311143839333294,
+  "decision_rule": "AUC media ago-oct; mezcla 50/50 solo si mejora >=0.0005",
+  "specs": {
+    "CB_perfil": {
+      "family": "cat",
+      "group": "perfil",
+      "depth": 5
+    },
+    "CB_historia": {
+      "family": "cat",
+      "group": "historia",
+      "depth": 5
+    },
+    "CB_dinamica": {
+      "family": "cat",
+      "group": "dinamica",
+      "depth": 5
+    },
+    "CB_cruces": {
+      "family": "cat",
+      "group": "cruces",
+      "depth": 5
+    },
+    "CB_completo": {
+      "family": "cat",
+      "group": "completo",
+      "depth": 5
+    },
+    "CB_completo_profundo": {
+      "family": "cat",
+      "group": "completo",
+      "depth": 7,
+      "l2": 25,
+      "trees": 350
+    },
+    "CB_encoding_pasado": {
+      "family": "cat",
+      "group": "cruces",
+      "depth": 5,
+      "encoding": true
+    },
+    "CB_foco": {
+      "family": "cat",
+      "group": "foco",
+      "depth": 4,
+      "l2": 20
+    },
+    "GAM_splines": {
+      "family": "spline",
+      "group": "cruces"
+    },
+    "HGB_completo": {
+      "family": "hgb",
+      "group": "completo"
+    }
+  },
+  "target": "hazard mensual",
+  "availability": "covariables antes de evento; etiquetas t-1 disponibles en t",
+  "train_sha256": "a714ebcd8587b2cc0f75ae642aa3e4ca5904eea02e249d969a06e8e7380e0567",
+  "python": "3.13.7"
+}

@@ -1,0 +1,39 @@
+A. Panel bookkeeping
+  clients: 24,628   rows: 110,100
+  clients with more than one 1: 0
+  rows with a 1 that are not the client's last row: 0
+  clients with gaps (missing months between first and last): 0
+  clients who disappear before Nov without converting: 0
+
+B. Converted vs still waiting at the end of November (censored)
+  converted: 16,567 (67.3%)   never converted (all still present in Nov): 8,061 (32.7%)
+                clients  converted  max_attempts
+entry month 1     10400      0.811            11
+entry month 2       921      0.782            10
+entry month 3      2043      0.772             9
+entry month 4       827      0.724             8
+entry month 5      1973      0.680             7
+entry month 6      1834      0.642             6
+entry month 7       950      0.564             5
+entry month 8      1760      0.495             4
+entry month 9      1299      0.425             3
+entry month 10     1893      0.323             2
+entry month 11      728      0.196             1
+  attempts among converters: mean 3.69, median 3, max 11
+
+C. Monthly conversion rate by attempt number
+attempt          1           2           3           4          5          6          7          8          9          10        11
+mean         0.1597      0.1609      0.1512      0.1473     0.1518     0.1406     0.1377     0.1289     0.1259     0.1402     0.131
+size     24628.0000  20110.0000  15593.0000  12489.0000  9760.0000  7864.0000  6101.0000  4630.0000  3805.0000  2861.0000  2259.000
+  profile + month known, adding attempt as a number: likelihood-ratio = 0.1 on 1 df; slope per attempt +0.0008 (z = 0.24)
+  profile + month known, adding attempt as categories (2..11 vs 1): likelihood-ratio = 4.3 on 10 df
+  observed / expected conversions by attempt (expected from profile + month):
+attempt     1      2      3      4      5     6      7      8      9      10     11
+obs/exp  0.999  1.004  0.998  0.978  1.027  0.98  1.015  0.983  0.989  1.042  1.008
+
+D. Geometric check: simulate each client's attempts from its fitted monthly p
+  converted share: observed 0.673, simulated 0.673 (± 0.003 between simulations)
+  attempts-until-conversion distribution (converters), observed vs simulated:
+attempts      1      2      3      4      5      6      7      8      9      10     11
+observed   0.237  0.195  0.142  0.111  0.089  0.067  0.051  0.036  0.029  0.024  0.018
+simulated  0.237  0.196  0.142  0.113  0.087  0.069  0.050  0.037  0.029  0.023  0.018

@@ -1,0 +1,22 @@
+# Entorno
+.venv/
+*__pycache__
+*.pyc
+.ipynb_checkpoints/
+catboost_info/
+.DS_Store
+team_attempts/jorge/CLAUDE.md
+team_attempts/jorge/AGENTS.md
+# Datos de la competencia (no se redistribuyen) y derivados
+# train.csv
+# test.csv
+# sample_submission.csv
+data/
+outputs/
+
+# Estudios de Optuna (pesados; los .json con los mejores parámetros sí se versionan)
+reports/tuning/*.db
+
+# Copia para publicar el visor
+comms/visor_artifact.html
+metaData.csv

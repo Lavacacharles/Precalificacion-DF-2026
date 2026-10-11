@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Bitácora de agentes</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Hilo de conversación entre roles: barra lateral con filtros, matriz quién-le-habla-a-quién y el hilo cronológico. */
+:root{
+  --bg:#F3F6FA; --panel:#FFFFFF; --fg:#0C2340; --fg2:#4A5875; --fg3:#8592AB; --line:#DCE3EE; --accent:#F5821F; --soft:#EEF2F8;
+  --sans:"Inter","Segoe UI",system-ui,sans-serif; --disp:"Poppins","Segoe UI",sans-serif; --mono:"JetBrains Mono",Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0A1426;--panel:#111E36;--fg:#E8EEF8;--fg2:#AAB7CC;--fg3:#74839C;--line:#22324F;--soft:#18284A;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0A1426;--panel:#111E36;--fg:#E8EEF8;--fg2:#AAB7CC;--fg3:#74839C;--line:#22324F;--soft:#18284A;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.5 var(--sans)}
+.wrap{max-width:1240px;margin:0 auto;padding-inline:16px;padding-block:28px 60px;display:grid;grid-template-columns:260px minmax(0,1fr);gap:28px}
+@media (max-width:820px){.wrap{grid-template-columns:minmax(0,1fr)}}
+header{grid-column:1/-1;display:flex;flex-wrap:wrap;align-items:flex-end;gap:12px 24px}
+h1{margin:0;font:700 30px/1.1 var(--disp);letter-spacing:-.01em;text-wrap:balance}
+header p{margin:0;color:var(--fg2)}
+.eb{font:600 12px/1 var(--disp);letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
+aside{display:flex;flex-direction:column;gap:18px;min-width:0}
+.box{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.box h3{margin:0 0 10px;font:600 12px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--fg3)}
+.flt{display:flex;flex-wrap:wrap;gap:6px}
+.flt button{font:500 13px/1 var(--sans);color:var(--fg2);background:var(--soft);border:1px solid transparent;border-radius:999px;padding:7px 11px;cursor:pointer;display:inline-flex;gap:6px;align-items:center}
+.flt button.on{border-color:var(--fg);color:var(--fg);background:var(--panel)}
+.flt button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.dot{width:9px;height:9px;border-radius:50%;flex:none}
+.mx{width:100%;border-collapse:collapse;font:500 13px/1 var(--sans);font-variant-numeric:tabular-nums}
+.mx th,.mx td{padding:6px 4px;text-align:center;border-bottom:1px solid var(--line)}
+.mx th{color:var(--fg3);font-weight:600;font-size:11px}
+.mx td.z{color:var(--fg3)}
+.mx td b{color:var(--fg)}
+.kpis{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.kpis div{background:var(--soft);border-radius:10px;padding:10px 12px;font-size:12px;color:var(--fg2)}
+.kpis b{display:block;font:700 22px/1 var(--disp);color:var(--fg);margin-bottom:4px;font-variant-numeric:tabular-nums}
+main{min-width:0;display:flex;flex-direction:column;gap:12px}
+.ronda{font:600 12px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--fg3);margin:14px 0 2px;display:flex;align-items:center;gap:10px}
+.ronda::after{content:"";flex:1;height:1px;background:var(--line)}
+.msg{background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--c);border-radius:12px;padding:14px 16px;min-width:0}
+.msg.hl{box-shadow:0 0 0 2px var(--accent)}
+.top{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:13px;color:var(--fg2)}
+.who{font-weight:600;color:var(--fg)}
+.arr{color:var(--fg3)}
+.tp{font:600 11px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;border-radius:6px;padding:5px 7px;background:var(--soft);color:var(--fg2)}
+.tp.bloqueo{background:#FBE7E2;color:#A23B26}.tp.pedido{background:#FFEBD9;color:#9A4A0B}.tp.hallazgo{background:#E3F2E9;color:#22693F}.tp.leccion{background:#EDE3F7;color:#6B2F99}.tp.handoff{background:#E3EBF9;color:#24479A}.tp.respuesta{background:#E6F1F5;color:#1F5E70}
+.id{margin-left:auto;font:500 12px/1 var(--mono);color:var(--fg3)}
+.as{margin:8px 0 4px;font:600 16px/1.35 var(--disp);color:var(--fg)}
+.tx{margin:0;color:var(--fg2);white-space:pre-wrap;overflow-wrap:anywhere}
+.meta{margin-top:10px;display:flex;flex-wrap:wrap;gap:6px}
+.meta span{font:500 12px/1 var(--mono);background:var(--soft);color:var(--fg2);border-radius:6px;padding:6px 8px;overflow-wrap:anywhere}
+.meta a{color:var(--accent);text-decoration:none;font:600 12px/1 var(--sans);padding:6px 4px}
+.empty{padding:40px;text-align:center;color:var(--fg3);border:1px dashed var(--line);border-radius:12px}
+</style></head><body>
+<div class="wrap">
+  <header><div><div class="eb">DataFest 2026 · agentes por rol</div><h1>Bitácora de agentes</h1></div>
+    <p id="sum"></p></header>
+  <aside>
+    <div class="box"><h3>Resumen</h3><div class="kpis" id="kpis"></div></div>
+    <div class="box"><h3>Rol</h3><div class="flt" id="fRol"></div></div>
+    <div class="box"><h3>Tipo</h3><div class="flt" id="fTipo"></div></div>
+    <div class="box"><h3>Quién le habla a quién</h3><div style="overflow-x:auto"><table class="mx" id="mx"></table></div></div>
+  </aside>
+  <main id="hilo"></main>
+</div>
+<script>
+const MS = /*__DATA__*/[];
+const ROLES = /*__ROLES__*/{};
+const TIPOS = ["handoff","pedido","respuesta","hallazgo","bloqueo","leccion"];
+let fRol = "", fTipo = "";
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const rn = k => (ROLES[k] || {n:k}).n, rc = k => (ROLES[k] || {c:"#8592AB"}).c;
+const usados = Object.keys(ROLES).filter(k => MS.some(m => m.de === k || m.para === k));
+
+function chips(el, items, cur, set, label, color) {
+  el.innerHTML = ["", ...items].map(v => `<button data-v="${v}" class="${v === cur ? "on" : ""}">${v && color ? `<i class="dot" style="background:${color(v)}"></i>` : ""}${v ? esc(label(v)) : "Todos"} <small>${v ? MS.filter(m => label === rn ? (m.de === v || m.para === v) : m.tipo === v).length : MS.length}</small></button>`).join("");
+  el.querySelectorAll("button").forEach(b => b.onclick = () => { set(b.dataset.v); render(); });
+}
+function render() {
+  chips(document.getElementById("fRol"), usados, fRol, v => fRol = v, rn, rc);
+  chips(document.getElementById("fTipo"), TIPOS.filter(t => MS.some(m => m.tipo === t)), fTipo, v => fTipo = v, t => t, null);
+  const vis = MS.filter(m => (!fRol || m.de === fRol || m.para === fRol) && (!fTipo || m.tipo === fTipo));
+  const h = document.getElementById("hilo");
+  if (!MS.length) { h.innerHTML = `<div class="empty">Todavía no hay mensajes. Los agentes escriben con <code>python -m src.comms enviar</code>.</div>`; return; }
+  let html = "", ronda;
+  vis.forEach(m => {
+    if (m.ronda !== ronda) { ronda = m.ronda; html += `<div class="ronda">${ronda != null ? "Ronda " + ronda : "Sin ronda"}</div>`; }
+    html += `<article class="msg" id="m${m.id}" style="--c:${rc(m.de)}">
+      <div class="top"><span class="who">${esc(rn(m.de))}</span><span class="arr">→</span><span>${esc(rn(m.para))}</span><span class="tp ${m.tipo}">${m.tipo}</span><span class="id">#${m.id} · ${esc(m.ts.slice(11,16))}</span></div>
+      <div class="as">${esc(m.asunto)}</div><p class="tx">${esc(m.msg)}</p>
+      <div class="meta">${m.responde_a ? `<a href="#m${m.responde_a}" data-go="${m.responde_a}">↩ responde a #${m.responde_a}</a>` : ""}${m.exp ? `<span>exp: ${esc(m.exp)}</span>` : ""}${(m.artefactos||[]).map(a => `<span>${esc(a)}</span>`).join("")}</div></article>`;
+  });
+  h.innerHTML = html || `<div class="empty">Ningún mensaje con estos filtros.</div>`;
+  h.querySelectorAll("[data-go]").forEach(a => a.onclick = e => { e.preventDefault(); const t = document.getElementById("m" + a.dataset.go); if (t) { t.scrollIntoView({behavior:"smooth", block:"center"}); t.classList.add("hl"); setTimeout(() => t.classList.remove("hl"), 1600); } });
+}
+(function () {
+  const n = t => MS.filter(m => m.tipo === t).length;
+  document.getElementById("sum").textContent = MS.length ? `${MS.length} mensajes · ${new Set(MS.map(m => m.ronda)).size} rondas · del ${MS[0].ts.slice(0,16)} al ${MS[MS.length-1].ts.slice(0,16)}` : "";
+  document.getElementById("kpis").innerHTML = [["Mensajes", MS.length], ["Pedidos", n("pedido")], ["Bloqueos", n("bloqueo")], ["Lecciones", n("leccion")]].map(([l, v]) => `<div><b>${v}</b>${l}</div>`).join("");
+  const rs = usados;
+  document.getElementById("mx").innerHTML = `<tr><th>de \\ a</th>${rs.map(r => `<th title="${esc(rn(r))}">${esc(r)}</th>`).join("")}</tr>` +
+    rs.map(a => `<tr><th title="${esc(rn(a))}">${esc(a)}</th>${rs.map(b => { const c = MS.filter(m => m.de === a && m.para === b).length; return `<td class="${c ? "" : "z"}">${c ? `<b>${c}</b>` : "·"}</td>`; }).join("")}</tr>`).join("");
+  render();
+})();
+</script>
+</body></html>

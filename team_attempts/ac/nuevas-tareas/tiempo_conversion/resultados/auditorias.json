@@ -1,0 +1,12 @@
+{
+  "clientes": 24628,
+  "filas": 110100,
+  "gradiente_error": 5.674897074054467e-08,
+  "claves": true,
+  "contiguidad": true,
+  "evento_terminal": true,
+  "features_sin_etiqueta": true,
+  "features_invariantes_al_futuro": true,
+  "historia_invariante_al_futuro": true,
+  "identidad_pmf_hazard": true
+}

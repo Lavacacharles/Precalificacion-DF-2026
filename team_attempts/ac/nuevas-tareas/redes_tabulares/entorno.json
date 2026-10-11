@@ -1,0 +1,36 @@
+{
+  "python": "3.13.7 (tags/v3.13.7:bcee1c3, Aug 14 2025, 14:15:11) [MSC v.1944 64 bit (AMD64)]",
+  "librerias": {
+    "torch": "2.14.1+cpu",
+    "pytorch-tabnet": "4.1.0",
+    "tabm": "0.0.3",
+    "rtdl-num-embeddings": "0.0.12",
+    "catboost": "1.2.10",
+    "numpy": "2.5.3",
+    "scikit-learn": "1.9.1"
+  },
+  "prueba": [
+    {
+      "familia": "MLP",
+      "best_epoch": 2,
+      "epochs_run": 2,
+      "seconds": 1.4341763999982504,
+      "parameters": 4865
+    },
+    {
+      "familia": "TabM",
+      "best_epoch": 2,
+      "epochs_run": 2,
+      "seconds": 0.9067173000075854,
+      "parameters": 10200
+    },
+    {
+      "familia": "TabNet",
+      "best_epoch": 2,
+      "epochs_run": 2,
+      "seconds": 1.6227801999921212,
+      "parameters": 8420
+    }
+  ],
+  "lee_datos_reales": false
+}

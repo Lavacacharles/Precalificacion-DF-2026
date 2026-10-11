@@ -1,0 +1,11 @@
+{
+  "python": "3.13.7 (tags/v3.13.7:bcee1c3, Aug 14 2025, 14:15:11) [MSC v.1944 64 bit (AMD64)]",
+  "semilla": 42,
+  "ajustes": 122,
+  "train_sha256": "a714ebcd8587b2cc0f75ae642aa3e4ca5904eea02e249d969a06e8e7380e0567",
+  "script_sha256": "979b6f6e6ae312afc12d245947da3889eba78ecdc809c6e39c345e7585057cfa",
+  "protocolo_sha256": "bbaa8939c841ad9121db63c44af09475b611f00e566e73604d53acd31f400c5a",
+  "historia_sha256": "1cd181922a43d1938d8ba656b80e4cb70235e87ab77f1c63ba04ef7c5882579a",
+  "seleccionado": "Hazard_compartido",
+  "lee_test": false
+}

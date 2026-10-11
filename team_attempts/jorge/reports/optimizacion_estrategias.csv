@@ -1,0 +1,5 @@
+estrategia,contactados,costo,valor_esperado_neto,share_riesgo_alto,n_app,n_call_center,n_asesor,conversiones_reales_contactados,valor_realizado_proxy
+aleatorio,1686,25000,113693,0.099,66,1220,400,277,124506
+greedy,1628,25000,207768,0.023,6,1222,400,471,245843
+greedy_rentab,7443,24999,354867,0.099,5663,1500,280,1334,401035
+optimo,7020,24967,388855,0.1,5238,1499,283,1275,447275

@@ -1,0 +1,5 @@
+restriccion,unidad,delta,dual_lp,dif_finita_lp,dif_finita_mip
+cupo_call_center,S/ por cupo,100,32.85,32.11,32.73
+cupo_asesor,S/ por cupo,50,-0.0,0.0,0.0
+presupuesto,S/ por S/ 1.000,1000,3080.39,3037.44,2941.85
+riesgo_alto,S/ por +1 p.p.,1,,1084.83,1146.79

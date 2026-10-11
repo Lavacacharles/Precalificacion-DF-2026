@@ -1,0 +1,10 @@
+{
+  "prefijo": true,
+  "independiente_etiquetas": true,
+  "transform_no_reajusta": true,
+  "filas": 110100,
+  "usuarios": 24628,
+  "features": 23,
+  "dimension_densa": 40,
+  "train_sha256": "a714ebcd8587b2cc0f75ae642aa3e4ca5904eea02e249d969a06e8e7380e0567"
+}

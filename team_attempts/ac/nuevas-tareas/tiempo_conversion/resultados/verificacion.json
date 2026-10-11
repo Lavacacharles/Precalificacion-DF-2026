@@ -1,0 +1,9 @@
+{
+  "metricas_mensuales": 64,
+  "horizontes": 18,
+  "exactos_entrada": 80,
+  "predicciones_mensuales": 318800,
+  "etiquetas_y_soporte": true,
+  "hashes": true,
+  "gradiente_auditado": true
+}
